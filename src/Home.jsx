@@ -11,7 +11,7 @@ const Home = () => {
       backgroundImage: `url(${banner})`,
     }}
   >
-    <h1 className='flex items-end text-md md:font-3xl lg:font-2xl font-semibold text-gray-700 mb-10'>
+    <h1 className='flex items-end text-[12px] md:text-3xl lg:text-3xl font-serif text-gray-700 mb-10'>
         <Typewriter
             words={['Welcome to WildSprout Beauty', 'Launching Soon...']}
             loop={0}    
