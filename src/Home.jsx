@@ -4,9 +4,10 @@ import banner from './assets/banner.png'
 
 const Home = () => {
   return (
-    <div className='text-center mt-10'>
+    <section id='Home'>
+    <div className='text-center pt-24'>
       <div
-    className="flex  justify-center h-[200px] md:h-[410px] lg:h-[500px] w-full bg-center bg-contain bg-no-repeat rounded-lg  "
+    className="flex  justify-center h-[200px] md:h-[410px] lg:h-[500px] w-full bg-center bg-contain bg-no-repeat rounded-2xl border border-gray-300 lg:border-none "
     style={{
       backgroundImage: `url(${banner})`,
     }}
@@ -23,6 +24,7 @@ const Home = () => {
         /></h1></div>
        
     </div>
+    </section>
   )
 }
 

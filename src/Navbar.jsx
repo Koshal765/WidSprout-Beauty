@@ -15,15 +15,28 @@ const Navbar = () => {
         {id:'Feedback',label:'Feedback'}
     ]
 
+   
+   
+   const handlleMenuItemClick = (sectionid) => {
+
+    setIsMenuOpen(false);
+
+    const section = document.getElementById(sectionid);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+
   return (
     <div>
-        <nav className='bg-yellow-200 p-5 flex items-center justify-around shadow-xl'>
+        <nav className='bg-yellow-200 p-5 flex items-center justify-around shadow-xl fixed z-50 w-full' >
            <div><h1 className='text-xl font-semibold font-serif sm:text-2xl md:text-3xl lg:text-4xl'>WildSprout Beauty</h1></div> 
            <div>
             <ul className=' hidden md:flex items-center'>
                 {menu.map((items)=>(
                     <li  key={items.id} className='inline-block font-semibold px-3 text-sm  '>
-                        <button className='cursor-pointer transition-all hover:scale-110'>{items.label}</button></li>
+                        <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
                 )
 
                 )}
@@ -36,7 +49,7 @@ const Navbar = () => {
                 <ul className='absolute bg-yellow-200 top-16 left-0 w-full  p-5 md:hidden'>
                 {menu.map((items)=>(
                     <li  key={items.id} className='border-b-2 border-gray-300 w-full py-2'>
-                        <button className='cursor-pointer transition-all hover:scale-110'>{items.label}</button></li>
+                        <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
                 )
                 )}
 
