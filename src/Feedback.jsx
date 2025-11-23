@@ -51,8 +51,8 @@ const Feedback = ({setRefresh}) => {
 
   return (
    <section id='Feedback' className='my-20 py-24'>
-    <h1 className='text-center text-xl md:text-2xl lg:text-5xl font-serif font-semibold'>Share your Feedback </h1>
-    <p className='text-center font-serif text-2xl mt-10 text-gray-700'>We value your experience! Your feedback helps us improve and serve you better.</p>
+    <h1 className='text-center text-2xl md:text-2xl lg:text-5xl font-serif font-semibold'>Share your Feedback </h1>
+    <p className='text-center font-serif text-md md:text-2xl lg:text-2xl mt-10 text-gray-700'>We value your experience! Your feedback helps us improve and serve you better.</p>
    <div className=' justify-center flex mt-19'>
     <form onSubmit={handelSubmit}> 
        <div className='text-center  w-75  md:w-120 lg:w-120 rounded-xl shadow-lg shadow-gray-400 border border-amber-100'>

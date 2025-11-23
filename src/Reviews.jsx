@@ -36,7 +36,7 @@ const Reviews = ({refresh}) => {
       <div className='text-center'>
         <h1 className=' text-3xl md:text-4xl lg:text-5xl font-serif mb-10'>⭐Customer Reviews</h1>
         <p className='text-lg w-75 md:w-100 lg:w-full mx-auto'>"Here’s what our customers have to say about their experience with us."</p>
-        <p className='mt-5 font-semibold'>We value our customers, and their feedback helps us grow.</p>
+        <p className='mt-5 font-semibold '>We value our customers, and their feedback helps us grow.</p>
       </div>
       <div className='flex justify-center flex-wrap gap-5 w-full'>
       {loading ? (<div><h1>loading Customers Reviews</h1></div> ) : (  reviews.length === 0 ? (<div className='w-full  flex justify-center'>
