@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div>
-        <nav className='bg-yellow-200 p-5 flex items-center justify-around shadow-xl fixed z-50 w-full' >
+        <nav className='bg-yellow-200 p-5 flex items-center justify-around shadow-xl fixed z-50 w-full ' >
            <div><h1 className='text-xl font-semibold font-serif sm:text-2xl md:text-3xl lg:text-4xl'>WildSprout Beauty</h1></div> 
            <div>
             <ul className=' hidden md:flex items-center'>
