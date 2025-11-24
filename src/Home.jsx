@@ -25,7 +25,7 @@ const Home = () => {
               chemical-free beauty products that let your skin breathe and bloom.
             </p>
 
-            <ul className='mt-4 space-y-2 text-[13px] font-semibold text-gray-700'>
+            <ul className='mt-4 space-y-2 text-[20px] font-semibold text-gray-700'>
               <li>🌿 100% Natural Ingredients</li>
               <li>🌎 Eco-Friendly Packaging</li>
               <li>🐰 Cruelty-Free Products</li>
@@ -48,6 +48,7 @@ const Home = () => {
           <div
             className="flex justify-center w-full md:w-1/2"
           >
+            
             <div
               className="h-[470px] w-full max-w-[350px] bg-amber-200 bg-center bg-cover bg-no-repeat rounded-2xl border border-orange-300 shadow-md mt-5"
               style={{
