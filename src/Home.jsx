@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typewriter } from 'react-simple-typewriter';
-import Bannerr from './assets/Bannerr.png';
+import Banner2 from './assets/Banner2.png';
 import {motion} from 'framer-motion';
 
 const Home = () => {
@@ -13,8 +13,8 @@ const Home = () => {
           {/* LEFT TEXT */}
           <motion.div
           initial={{ x: -300, opacity: 0 }}
-animate={{ x: 0, opacity: 1 }}
-transition={{ duration: 1.5, ease: 'easeOut' }}
+animate={{ x: 0, opacity: [0,0, 0.2,0.3,1] }}
+transition={{ duration: 2, ease: 'easeOut' }}
 
           className='text-center md:text-left w-full md:w-1/2 md:mt-20'>
 
@@ -53,15 +53,15 @@ transition={{ duration: 1.5, ease: 'easeOut' }}
           {/* RIGHT IMAGE / BANNER */}
           <motion.div 
           initial={{ x: 300, opacity: 0 }}
-animate={{ x: 0, opacity: 0.9 }}
-transition={{ duration: 1.5, ease: 'easeOut' }}
+animate={{ x: 0, opacity:[0,0, 0.2,0.3,1] }}
+transition={{ duration: 3, ease: 'easeOut' }}
             className="flex justify-center w-full md:w-1/2"
           >
             
             <div
               className="h-[470px] w-full max-w-[350px] bg-amber-200 bg-center bg-cover bg-no-repeat rounded-2xl border border-orange-300 shadow-md mt-5 mb-5"
               style={{
-                backgroundImage: `url(${Bannerr})`,
+                backgroundImage: `url(${Banner2})`,
               }}
             ></div>
           </motion.div>

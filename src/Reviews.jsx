@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState,useEffect} from 'react';
+import { motion } from 'framer-motion';
 
 const Reviews = ({refresh}) => {
  const[reviews,setReviews]=useState([]);
@@ -44,7 +45,14 @@ const Reviews = ({refresh}) => {
         <h1 className='text-center  '>No Reviews Available</h1>
         </div>
         </div>) : (
-      <div className='w-full flex flex-wrap justify-center gap-5 mt-5'>
+      <motion.div
+          
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
+          viewport={{ amount: 0.3 }}
+      
+      className='w-full flex flex-wrap justify-center gap-5 mt-5'>
     
        {reviews.map((rev)=>(
         <div key={rev.id} className=' w-70 md:w-100 lg:w-100 h-auto border border-amber-300 rounded-lg p-5 m-5 shadow-lg shadow-gray-400 transition-all hover:scale-105 flex flex-col justify-between'>
@@ -55,7 +63,7 @@ const Reviews = ({refresh}) => {
             <h1 className='mt-2 font-semibold '>-{rev.name}</h1>
             
         </div>
-       ))}</div>
+       ))}</motion.div>
        
      
       )

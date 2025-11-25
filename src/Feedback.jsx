@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { toast,ToastContainer,Slide } from 'react-toastify';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const Feedback = ({setRefresh}) => {
   const[isfilled,setIsfilled]=useState({
@@ -53,7 +54,14 @@ const Feedback = ({setRefresh}) => {
    <section id='Feedback' className='my-20 py-24'>
     <h1 className='text-center text-2xl md:text-2xl lg:text-4xl font-serif font-semibold'>Share your Feedback </h1>
     <p className='text-center font-serif text-md md:text-xl lg:text-xl mt-10 text-gray-700'>We value your experience! Your feedback helps us improve and serve you better.</p>
-   <div className=' justify-center flex mt-19'>
+   <motion.div 
+   
+   initial={{ y: 50, opacity: 0 }}
+    whileInView={{ y: 0, opacity: 1 }}
+    transition={{ duration: 1.5, ease: 'easeOut' }}
+    viewport={{ amount: 0.3 }}
+    
+   className=' justify-center flex mt-19'>
     <form onSubmit={handelSubmit}> 
        <div className='text-center  w-75  md:w-120 lg:w-120 rounded-xl shadow-lg shadow-gray-400 border border-amber-100'>
       <h1 className='text-center mt-5 font-serif text-lg md:text-2xl lg:text-3xl'>Feedback Form</h1>
@@ -69,7 +77,7 @@ const Feedback = ({setRefresh}) => {
       </div>
     </form>
      <ToastContainer autoClose={2000} theme='dark' transition={Slide} closeOnClick:true   draggable:true hideProgressBar={false}/>
-   </div>
+   </motion.div>
    </section>
   )
 }

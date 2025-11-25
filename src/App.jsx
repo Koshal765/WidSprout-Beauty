@@ -5,6 +5,7 @@ import Home from './Home'
 import Feedback from './Feedback'
 import Reviews from './Reviews'
 import { useState } from 'react'
+import About from './About'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <>
      <Navbar/>
      <Home/>
+     <About/>
      <Reviews refresh={refresh}/>
      <Feedback setRefresh={setRefresh}/>
 
