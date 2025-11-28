@@ -22,7 +22,7 @@ transition={{ duration: 2, ease: 'easeOut' }}
               Welcome to
             </h1>
 
-            <h1 className='text-4xl font-serif font-semibold'>
+            <h1 className='text-4xl font-serif font-semibold text-rose-500'>
               WildSprout Beauty
             </h1>
 
@@ -37,7 +37,7 @@ transition={{ duration: 2, ease: 'easeOut' }}
               <li>🐰 Cruelty-Free Products</li>
             </ul>
 
-            <h2 className='mt-5 font-sans text-[14px]'>
+            <h2 className='mt-15 font-sans text-[18px] text-semibold text-rose-600'>
               <Typewriter
                 words={['Launching Soon...', 'Stay Tuned for Updates!', 'Exciting Products Ahead!']}
                 loop={0}
@@ -59,7 +59,7 @@ transition={{ duration: 3, ease: 'easeOut' }}
           >
             
             <div
-              className="h-[470px] w-full max-w-[350px] bg-amber-200 bg-center bg-cover bg-no-repeat rounded-2xl border border-orange-300 shadow-md mt-5 mb-5"
+              className="h-[470px] w-full max-w-[350px] bg-rose-500 bg-center bg-cover bg-no-repeat rounded-2xl border border-rose-400 shadow-xl shadow-rose-300 mt-5 mb-5"
               style={{
                 backgroundImage: `url(${Banner2})`,
               }}

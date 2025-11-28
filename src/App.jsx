@@ -6,6 +6,7 @@ import Feedback from './Feedback'
 import Reviews from './Reviews'
 import { useState } from 'react'
 import About from './About'
+import Products from './Products'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
      <Navbar/>
      <Home/>
      <About/>
+     <Products/>
      <Reviews refresh={refresh}/>
      <Feedback setRefresh={setRefresh}/>
 

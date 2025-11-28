@@ -10,9 +10,10 @@ const Navbar = () => {
     const menu=[
         {id:'Home',label:'Home'},
         {id:'About',label:'About us'},
-        {id:'Contact',label:'Contact'},
+        {id:'Products',label:'Products'},
         {id:'Reviews',label:'Reviews'},
-        {id:'Feedback',label:'Feedback'}
+        {id:'Feedback',label:'Feedback'},
+        {id:'Contact',label:'Contact'}
     ]
 
    
@@ -30,32 +31,32 @@ const Navbar = () => {
 
   return (
     <div>
-        <nav className='bg-yellow-200 p-5 flex items-center justify-around shadow-xl fixed z-50 w-full ' >
-           <div><h1 className='text-xl font-semibold font-serif sm:text-2xl md:text-3xl lg:text-4xl'>WildSprout Beauty</h1></div> 
+        <nav className='bg-rose-400 p-5 flex items-center justify-between md:justify-around lg:justify-around shadow-xl fixed z-50 w-full ' >
+           <div><h1 className='text-xl font-semibold font-serif sm:text-2xl md:text-3xl lg:text-4xl text-white'>WildSprout Beauty</h1></div> 
            <div>
             <ul className=' hidden md:flex items-center'>
                 {menu.map((items)=>(
-                    <li  key={items.id} className='inline-block font-semibold px-3 text-sm  '>
-                        <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
+                    <li  key={items.id} className='inline-block font-semibold px-3 text-md  '>
+                        <button className='cursor-pointer transition-all hover:scale-110 text-gray-100 hover:text-white' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
                 )
 
                 )}
-                <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110'><a href="#">Products</a></li>
+                {/* <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><a href="Products">Products</a></li> */}
             </ul>
             <div className='md:hidden'>
-                {isMenuOpen ? (<FiX className='text-3xl cursor-pointer' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer' onClick={()=>setIsMenuOpen(true)}/>)}
+                {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
             </div>
             {isMenuOpen && (
-                <ul className='absolute bg-yellow-200 top-16 left-0 w-full text-center p-5 md:hidden'>
+                <ul className='absolute bg-white top-16 left-0 w-full text-center p-5 md:hidden'>
                 {menu.map((items)=>(
-                    <li  key={items.id} className='border-b-2 border-gray-300 w-full py-2'>
+                    <li  key={items.id} className='border-b-2 border-rose-200 w-full py-2 text-rose-500'>
                         <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
                 )
                 )}
 
 
-                <li className='border-b-2 border-gray-300 w-full py-2 cursor-pointer 
-             transition-all hover:scale-110'><a href="#">Products</a></li>
+                {/* <li className='border-b-2 border-rose-300 w-full py-2 cursor-pointer 
+             transition-all hover:scale-110 text-rose-500'><a href="#">Products</a></li> */}
             </ul>
             )}
            </div>
