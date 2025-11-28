@@ -47,7 +47,7 @@ const Navbar = () => {
                 {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
             </div>
             {isMenuOpen && (
-                <ul className='absolute bg-white top-16 left-0 w-full text-center p-5 md:hidden'>
+                <ul className='absolute bg-white top-16 left-0 w-full text-center p-5 md:hidden border border-rose-500 shadow-lg shadow-rose-100 rounded-b-xl '>
                 {menu.map((items)=>(
                     <li  key={items.id} className='border-b-2 border-rose-200 w-full py-2 text-rose-500'>
                         <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
