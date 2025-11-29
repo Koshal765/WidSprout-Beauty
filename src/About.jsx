@@ -26,7 +26,7 @@ const About = () => {
                   transition={{ duration: 1.5, ease: 'easeOut' }}
                   viewport={{ amount: 1.0 }}
 
-                  className='text-rose-500 font-semibold font-serif  text-2xl md:text-3xl lg:text-3xl text-center'>Our Inspiration</motion.h1>
+                  className='text-amber-700 font-semibold font-serif  text-2xl md:text-3xl lg:text-3xl text-center'>Our Inspiration</motion.h1>
                   <div className='pt-4 max-w-[1100px] mx-auto px-6'>
                     <motion.p 
                     initial={{ y: 50, opacity: 0 }}
@@ -38,16 +38,16 @@ const About = () => {
 
 Inspired by these timeless methods, WildSprout brings back safe, organic and gentle skincare — without harsh chemicals or long-term side effects.</motion.p>
                   </div>
-                  <div className=' lg:bg-rose-400 mt-20 flex flex-col justify-center rounded-lg shadow-lg shadow-gray-400'>
+                  <div className=' lg:bg-amber-600 mt-20 flex flex-col justify-center rounded-lg shadow-lg shadow-gray-400'>
                     <motion.ul 
                   
                     
-                    className='lg:flex justify-center '>
-                      <li className=' text-rose-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌿 100% Natural Ingredients</li>
+                    className='lg:flex justify-start lg:justify-center '>
+                      <li className=' text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌿 100% Natural Ingredients</li>
                       {/* <li className='text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌎 Eco-Friendly Packaging</li> */}
-                      <li className='text-rose-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🐰 Cruelty-Free Products</li>
-                      <li className='text-rose-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>💧 Hydrating & Nourishing</li>
-                      <li className='text-rose-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌸 Inspired by Ancient Rituals</li>
+                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🐰 Cruelty-Free Products</li>
+                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>💧 Hydrating & Nourishing</li>
+                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌸 Inspired by Ancient Rituals</li>
                     </motion.ul>
                   </div>
                 </div>

@@ -63,20 +63,20 @@ const Feedback = ({setRefresh}) => {
     
    className=' justify-center flex mt-19'>
     <form onSubmit={handelSubmit}> 
-       <div className='text-center  w-75  md:w-120 lg:w-120 rounded-xl shadow-lg shadow-rose-200 border border-rose-100'>
+       <div className='text-center  w-75  md:w-120 lg:w-120 rounded-xl shadow-lg shadow-rose-200 border border-amber-700'>
       <h1 className='text-center mt-5 font-serif text-lg md:text-2xl lg:text-3xl'>Feedback Form</h1>
      
     
-        <input type="text" name="name" placeholder='Enter your name' value={isfilled.name} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 border border-rose-300' required/>
+        <input type="text" name="name" placeholder='Enter your name' value={isfilled.name} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 border  focus:border-amber-700 outline-none' required/>
        
-        <input type="text" name="rating" placeholder='Rate us out of 5' value={isfilled.rating} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 border border-rose-300' required/>
+        <input type="text" name="rating" placeholder='Rate us out of 5' value={isfilled.rating} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 border  focus:border-amber-700 outline-none' required/>
         
-        <textarea name="message" placeholder='Enter your feedback ' value={isfilled.message} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 h-32 border border-rose-300' rows={2} required/>
+        <textarea name="message" placeholder='Enter your feedback ' value={isfilled.message} onChange={handelChange} className='m-5 p-2 rounded-lg w-50 md:w-96 h-32 border  focus:border-amber-700 outline-none' rows={2} required/>
       <br/>
-        <button type="submit" disabled={btndisabled} className='mb-5 p-2 bg-rose-500 rounded-xl hover:bg-rose-600 transition-all hover:scale-105 w-50 md:w-100 lg:w-100 text-white'>{btndisabled ? "Submitting..." : "Submit"}</button>
+        <button type="submit" disabled={btndisabled} className='mb-5 p-2 bg-amber-600 rounded-xl hover:bg-amber-700 transition-all hover:scale-105 w-50 md:w-100 lg:w-100 text-white'>{btndisabled ? "Submitting..." : "Submit"}</button>
       </div>
     </form>
-     <ToastContainer autoClose={2000} theme='dark' transition={Slide} closeOnClick:true   draggable:true hideProgressBar={false}/>
+     <ToastContainer autoClose={2000} theme='dark' transition={Slide} closeOnClick={true}   draggable={true} hideProgressBar={false}/>
    </motion.div>
    </section>
   )

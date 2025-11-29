@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <div>
-        <nav className='bg-rose-400 p-5 flex items-center justify-between md:justify-around lg:justify-around shadow-xl fixed z-50 w-full ' >
+        <nav className='bg-amber-600 p-5 flex items-center justify-between md:justify-around lg:justify-around shadow-xl fixed z-50 w-full ' >
            <div><h1 className='text-xl font-semibold font-serif sm:text-2xl md:text-3xl lg:text-4xl text-white'>WildSprout Beauty</h1></div> 
            <div>
             <ul className=' hidden md:flex items-center'>
@@ -47,9 +47,9 @@ const Navbar = () => {
                 {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
             </div>
             {isMenuOpen && (
-                <ul className='absolute bg-white top-16 left-0 w-full text-center p-5 md:hidden border border-rose-500 shadow-lg shadow-rose-100 rounded-b-xl '>
+                <ul className='absolute bg-white top-16 left-0 w-full text-center p-5 md:hidden border border-amber-700 shadow-lg shadow-rose-100 rounded-b-xl '>
                 {menu.map((items)=>(
-                    <li  key={items.id} className='border-b-2 border-rose-200 w-full py-2 text-rose-500'>
+                    <li  key={items.id} className='border-b-2 border-rose-200 w-full py-2 text-amber-700'>
                         <button className='cursor-pointer transition-all hover:scale-110' onClick={()=>handlleMenuItemClick(items.id)}>{items.label}</button></li>
                 )
                 )}

@@ -55,12 +55,12 @@ const Reviews = ({refresh}) => {
       className='w-full flex flex-wrap justify-center gap-5 mt-5'>
     
        {reviews.map((rev)=>(
-        <div key={rev.id} className=' w-70 md:w-100 lg:w-100 h-auto border border-amber-300 rounded-lg p-5 m-5 shadow-lg shadow-rose-200 transition-all hover:scale-105 flex flex-col justify-between'>
+        <div key={rev.id} className='w-70 md:w-100 lg:w-100 h-auto border border-amber-300 rounded-lg p-5 m-5 shadow-lg shadow-rose-200 transition-all hover:scale-105 flex flex-col justify-between'>
             <div className='grow'>
             <p className='text-md  md:text-lg lg:text-lg font-medium text-gray-600'>{rev.message}</p>
             <p className='text-xl md:text-2xl lg:text-2xl mt-3'>{rev.rating}⭐</p> 
           </div> 
-            <h1 className='mt-2 font-semibold text-rose-600 '>-{rev.name}</h1>
+            <h1 className='mt-2 font-semibold text-amber-800 '>-{rev.name}</h1>
             
         </div>
        ))}</motion.div>

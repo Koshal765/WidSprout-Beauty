@@ -1,9 +1,18 @@
 import React from 'react'
 import { Typewriter } from 'react-simple-typewriter';
 import Banner2 from './assets/Banner2.png';
+import banner3 from './assets/banner3.png';
 import {motion} from 'framer-motion';
 
 const Home = () => {
+
+  const banner=[
+   Banner2,
+    banner3
+  ]
+
+
+
   return (
     <section id='Home' className="w-full">
       <div className='pt-24 max-w-[1100px] mx-auto px-6'>
@@ -22,7 +31,7 @@ transition={{ duration: 2, ease: 'easeOut' }}
               Welcome to
             </h1>
 
-            <h1 className='text-4xl font-serif font-semibold text-rose-500'>
+            <h1 className='text-4xl font-serif font-semibold text-amber-700'>
               WildSprout Beauty
             </h1>
 
@@ -51,7 +60,7 @@ transition={{ duration: 2, ease: 'easeOut' }}
           </motion.div>
 
           {/* RIGHT IMAGE / BANNER */}
-          <motion.div 
+           <motion.div 
           initial={{ x: 300, opacity: 0 }}
 animate={{ x: 0, opacity:[0,0, 0.2,0.3,1] }}
 transition={{ duration: 3, ease: 'easeOut' }}
@@ -64,7 +73,24 @@ transition={{ duration: 3, ease: 'easeOut' }}
                 backgroundImage: `url(${Banner2})`,
               }}
             ></div>
-          </motion.div>
+          </motion.div> 
+          {/* <div className="w-full overflow-hidden py-10 flex items-center">
+      <motion.div
+        className="flex gap-6"
+        animate={{ x: ["0%", "-100%"] }}
+        transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
+      >
+        {[...banner, ...banner].map((img, i) => (
+          <div key={i} className="min-w-[280px] h-[380px] rounded-xl overflow-hidden shadow-xl border">
+            <img
+              src={img}
+              alt="poster"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div> */}
 
         </div>
 
