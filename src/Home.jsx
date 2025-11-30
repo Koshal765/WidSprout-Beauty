@@ -3,6 +3,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import Banner2 from './assets/Banner2.png';
 import banner3 from './assets/banner3.png';
 import {motion} from 'framer-motion';
+import cream from './assets/cream.png';
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
 
 
   return (
-    <section id='Home' className="w-full">
+    <section id='Home' className="w-full " >
       <div className='pt-24 max-w-[1100px] mx-auto px-6'>
 
         <div className='flex flex-col md:flex-row items-center md:items-start justify-between gap-10'>

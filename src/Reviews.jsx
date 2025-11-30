@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import { useState,useEffect} from 'react';
 import { motion } from 'framer-motion';
+import cream from './assets/cream.png';
+
 
 const Reviews = ({refresh}) => {
  const[reviews,setReviews]=useState([]);
@@ -33,7 +35,7 @@ const Reviews = ({refresh}) => {
 
 
   return (
-    <section id='Reviews' className='py-24'>
+    <section id='Reviews' className='py-24' >
       <div className='text-center'>
         <h1 className=' text-2xl md:text-4xl lg:text-4xl font-serif mb-10'>⭐Customer Reviews</h1>
         <p className='text-lg w-75 md:w-100 lg:w-full mx-auto'>"Here’s what our customers have to say about their experience with us."</p>

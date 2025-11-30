@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { toast,ToastContainer,Slide } from 'react-toastify';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import cream from './assets/cream.png';
 
 const Feedback = ({setRefresh}) => {
   const[isfilled,setIsfilled]=useState({
@@ -51,7 +52,7 @@ const Feedback = ({setRefresh}) => {
   } 
 
   return (
-   <section id='Feedback' className='my-20 py-24'>
+   <section id='Feedback' className='my-20 py-24' s>
     <h1 className='text-center text-2xl md:text-2xl lg:text-4xl font-serif font-semibold'>Share your Feedback </h1>
     <p className='text-center font-serif text-md md:text-xl lg:text-xl mt-10 text-gray-700'>We value your experience! Your feedback helps us improve and serve you better.</p>
    <motion.div 

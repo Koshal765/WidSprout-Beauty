@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion';
+import cream from './assets/cream.png';
 
 const About = () => {
   return (
-    <section id='About' className="w-full py-28 ">
+    <section id='About' className="w-full py-28 " >
         <div 
        
         className='pt-4 max-w-[1100px] mx-auto px-6 '>
