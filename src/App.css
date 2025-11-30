@@ -1,5 +1,9 @@
+
+
 body {
-  background-image: url('./assets/cream.png');
+  background-image: url('/Cream.png');
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
+ 
 }
