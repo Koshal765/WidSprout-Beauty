@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { useState,useEffect} from 'react';
 import { motion } from 'framer-motion';
-import cream from './assets/cream.png';
+
 
 
 const Reviews = ({refresh}) => {

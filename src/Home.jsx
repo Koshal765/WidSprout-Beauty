@@ -3,7 +3,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import Banner2 from './assets/Banner2.png';
 import banner3 from './assets/banner3.png';
 import {motion} from 'framer-motion';
-import cream from './assets/cream.png';
+
 
 const Home = () => {
 

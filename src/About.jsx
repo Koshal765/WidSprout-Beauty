@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion';
-import cream from './assets/cream.png';
+
 
 const About = () => {
   return (

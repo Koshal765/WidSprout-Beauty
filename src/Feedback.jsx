@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { toast,ToastContainer,Slide } from 'react-toastify';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import cream from './assets/cream.png';
+
 
 const Feedback = ({setRefresh}) => {
   const[isfilled,setIsfilled]=useState({
