@@ -14,10 +14,10 @@ const form = useRef();
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.sendForm(
-                    "service_svg91qi" ,  //service id
-                       "template_hd5ndob" ,    //template id
+                    "service_xext9md" ,  //service id
+                       "template_srwopfk" ,    //template id
                form.current,
-                      "0LkF_qC5veW8RyuyO"        //public key
+                      "UPcvhW3YTyJSYgAR0"        //public key
         ).then(()=>{
             SetisSent(true);
             form.current.reset();
