@@ -67,7 +67,7 @@ const form = useRef();
                 <FaPhoneAlt className="text-amber-700" /> +91 98765 43210
               </p>
               <p className="flex items-center gap-3">
-                <FaEnvelope className="text-amber-700" /> support@wildsproutbeauty.com
+                <FaEnvelope className="text-amber-700" />wildsproutbeauty@gmail.com
               </p>
             </div>
 
