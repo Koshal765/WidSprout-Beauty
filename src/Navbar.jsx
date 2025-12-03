@@ -42,7 +42,7 @@ const Navbar = () => {
                 )
 
                 )}
-                <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact" >Contact</Link></li>
+                <li className='text-md ml-4 cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact" >Contact</Link></li>
             </ul>
             <div className='md:hidden'>
                 {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
@@ -55,7 +55,7 @@ const Navbar = () => {
                 )
                 )}
 
- <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact">Contact</Link></li>
+ <li className='text-amber-700 cursor-pointer font-semibold transition-all hover:scale-110 mt-3'><Link to="/contact">Contact</Link></li>
             </ul>
             )}
            </div>
