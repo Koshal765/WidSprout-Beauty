@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { FiX } from 'react-icons/fi';
 import { FiMenu } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -41,7 +42,7 @@ const Navbar = () => {
                 )
 
                 )}
-                {/* <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><a href="Products">Products</a></li> */}
+                <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact" >Contact</Link></li>
             </ul>
             <div className='md:hidden'>
                 {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
@@ -54,9 +55,7 @@ const Navbar = () => {
                 )
                 )}
 
-
-                {/* <li className='border-b-2 border-rose-300 w-full py-2 cursor-pointer 
-             transition-all hover:scale-110 text-rose-500'><a href="#">Products</a></li> */}
+ <li className='text-sm cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact">Contact</Link></li>
             </ul>
             )}
            </div>

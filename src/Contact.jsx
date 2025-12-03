@@ -72,10 +72,10 @@ const form = useRef();
             </div>
 
             <div className="flex gap-4 mt-6">
-              <a className="p-3 rounded-full border border-amber-700 hover:bg-amber-700 hover:text-white transition">
+              <a className="p-3 rounded-full border border-amber-700 hover:bg-amber-700 hover:text-white transition" href="">
                 <FaFacebookF size={18} />
               </a>
-              <a className="p-3 rounded-full border border-amber-700 hover:bg-amber-700 hover:text-white transition">
+              <a className="p-3 rounded-full border border-amber-700 hover:bg-amber-700 hover:text-white transition" href="https://www.instagram.com/wildsprout_beauty?igsh=MXhienU0Z3lnd2h5cQ==" target="_blank">
                 <FaInstagram size={18} />
               </a>
             </div>
