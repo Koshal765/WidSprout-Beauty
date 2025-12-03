@@ -12,8 +12,8 @@ const Navbar = () => {
         {id:'About',label:'About us'},
         {id:'Products',label:'Products'},
         {id:'Reviews',label:'Reviews'},
-        {id:'Feedback',label:'Feedback'},
-        {id:'Contact',label:'Contact'}
+        {id:'Feedback',label:'Feedback'}
+        // {id:'Contact',label:'Contact'}
     ]
 
    

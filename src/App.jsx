@@ -7,6 +7,10 @@ import Reviews from './Reviews'
 import { useState } from 'react'
 import About from './About'
 import Products from './Products'
+import Contact from './Contact'
+import Footer from './Footer'
+
+
 
 
 function App() {
@@ -21,6 +25,9 @@ function App() {
      <Products/>
      <Reviews refresh={refresh}/>
      <Feedback setRefresh={setRefresh}/>
+     {/* <Contact/> */}
+     <Footer/>
+ 
 
     </>
   )
