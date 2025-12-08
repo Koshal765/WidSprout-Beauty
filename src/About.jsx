@@ -8,7 +8,7 @@ const About = () => {
         <div 
        
         className='pt-4 max-w-[1100px] mx-auto px-6 '>
-        <h1 className='text-center text-2xl md:text-2xl lg:text-4xl font-serif '>About WildSprout Beauty</h1>
+        <h1 className='text-center text-2xl md:text-2xl lg:text-4xl font-serif text-amber-800'>About WildSprout Beauty</h1>
         <motion.p 
          initial={{ y: 50, opacity: 0 }}
        
@@ -39,16 +39,16 @@ const About = () => {
 
 Inspired by these timeless methods, WildSprout brings back safe, organic and gentle skincare — without harsh chemicals or long-term side effects.</motion.p>
                   </div>
-                  <div className=' lg:bg-amber-600 mt-20 flex flex-col justify-center rounded-lg shadow-lg shadow-gray-400'>
+                  <div className=' lg:bg-amber-700 mt-20 flex flex-col justify-center rounded-lg lg:shadow-lg lg:shadow-gray-400'>
                     <motion.ul 
                   
                     
                     className='lg:flex justify-start lg:justify-center '>
-                      <li className=' text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌿 100% Natural Ingredients</li>
+                      <li className=' text-amber-700 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌿 100% Natural Ingredients</li>
                       {/* <li className='text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌎 Eco-Friendly Packaging</li> */}
-                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🐰 Cruelty-Free Products</li>
-                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>💧 Hydrating & Nourishing</li>
-                      <li className='text-amber-500 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌸 Inspired by Ancient Rituals</li>
+                      <li className='text-amber-700 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🐰 Cruelty-Free Products</li>
+                      <li className='text-amber-700 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>💧 Hydrating & Nourishing</li>
+                      <li className='text-amber-700 lg:text-white text-center p-3 font-serif font-semibold text-lg md:text-xl lg:text-xl'>🌸 Inspired by Ancient Rituals</li>
                     </motion.ul>
                   </div>
                 </div>

@@ -10,7 +10,9 @@ export const facepacks = [{
     name: 'WS-Beauty Facepack',
     description: 'A rejuvenating face pack made with natural herbs to give your skin a radiant glow.',
     image: image1,
-    tags:'All Skin types',
+    tags:'Normal Skin type',
+    ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
+    rating:4.5,
     price:'launching soon...'
 },
 {
@@ -18,7 +20,9 @@ export const facepacks = [{
     name: 'WS-Beauty Facepack',
     description: 'A gentle organic facepack that removes impurities and refreshes your skin and feels light.',
     image: image2,
-    tags:'Oily Skin types',
+    tags:'Oily Skin type',
+    ingredients:['Masoor Flour',' Jowar Flour',' Multani Mitti',' Moong Flour'],
+    rating:4.2,
     price:'launching soon...'
 },
 {
@@ -26,7 +30,9 @@ export const facepacks = [{
     name: 'WS-Beauty Facepack',
     description: 'A hydrating face pack enriched with botanical extracts to nourish combination skin.',
     image: image3,
-    tags:'Combination Skin types',
+    tags:'Combination Skin type',
+    ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
+    rating:4.7,
     price:'launching soon...'
 }
 ]

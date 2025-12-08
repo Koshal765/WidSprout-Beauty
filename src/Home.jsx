@@ -47,7 +47,7 @@ transition={{ duration: 2, ease: 'easeOut' }}
               <li>🐰 Cruelty-Free Products</li>
             </ul>
 
-            <h2 className='mt-15 font-sans text-[18px] text-semibold text-rose-600'>
+            <h2 className='mt-15 font-sans text-[18px] font-semibold  text-amber-600'>
               <Typewriter
                 words={['Launching Soon...', 'Stay Tuned for Updates!', 'Exciting Products Ahead!']}
                 loop={0}
