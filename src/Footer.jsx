@@ -24,7 +24,7 @@ const Footer = () => {
         <a href=''><FaFacebook size={24} s={true} className='text-white hover:text-blue-500'/></a>
         <a href='https://www.instagram.com/wildsprout_beauty?igsh=MXhienU0Z3lnd2h5cQ==' target='_blank'><FaInstagram size={24} s={true} className='text-white hover:text-rose-400 ' /></a>
         </div>
-     <Link to="/contact" > <h2 className='text-white font-serif text-xl lg:text-xl'>Contact</h2></Link>
+     <Link to="/contact" > <h2 className='text-white font-serif text-xl lg:text-xl sm:w-0 md:w-50 lg:w-60'>Contact Us</h2></Link>
 
     </div>
     <p className='text-center text-gray-400 mt-10'>&copy; 2024 WildSprout Beauty. All rights reserved.</p>
