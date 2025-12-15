@@ -1,5 +1,5 @@
 import React from 'react'
-import { facepacks } from './constant';
+import { products } from './constant';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ const Closeproduct=()=>{
   setSelectedProduct(null);
 }
 
+
   return (
     <section className='py-25' id='Products' >
       <div className='text-center'>
@@ -24,17 +25,14 @@ const Closeproduct=()=>{
 
       </div>
       <div className="w-full flex flex-wrap justify-center gap-12 py-10">
-        {facepacks.map((item, id) => (
+        {products.map((item, id) => (
           <motion.div
             key={id} onClick={()=>Openproduct(item)}
-               initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          viewport={{ amount: 0.3 }}
+              
             className="w-72 border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
           >
             <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200">
-              <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+              <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center" />
             </div>
             <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
             <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>
@@ -51,7 +49,7 @@ const Closeproduct=()=>{
       <button onClick={Closeproduct} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div className='flex gap-6 justify-center flex-col md:flex-row lg:flex-row'>
       <div className="h-50 w-full md:h-100 md:w-full lg:h-100 lg:w-full rounded-xl overflow-hidden mb-4 border border-amber-700 ">
-        <img src={selectedProduct.image} alt={selectedProduct.name} className="h-full w-full object-cover" />   
+        <img src={selectedProduct.image} alt={selectedProduct.name} className="h-full w-full object-cover object-center" />   
       </div>
       <div>
       <h2 className="text-xl lg:text-2xl font-serif font-semibold text-gray-900 mb-2">{selectedProduct.name}</h2>
@@ -75,9 +73,13 @@ const Closeproduct=()=>{
 )}
 
 
-      <div className='text-center mb-10 '>
-     <Link to="/all_products"><button className='text-white font-semibold py-2 px-6 rounded-lg border bg-black' >View More</button></Link>
-      </div>
+      <motion.div className='text-center mb-10 mt-10 '
+       initial={{ y: 60, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          viewport={{ amount: 0.3 }}>
+     <Link to="/all_products"><button className='text-white font-semibold py-2 px-6 rounded-lg border bg-black transition-all hover:scale-105'  >View More</button></Link>
+      </motion.div>
     </section>
   )
 }

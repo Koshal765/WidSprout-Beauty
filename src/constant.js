@@ -2,10 +2,45 @@ import image1 from './assets/image1.png';
 import image2 from './assets/image2.png';
 import image3 from './assets/image3.png';
 import image4 from './assets/image4.png';
+import tonerr from './assets/tonerr.png';
+import lipbalm from './assets/lipbalm.png';
+
+
+export const products = [{
+    id: 1,
+    name: 'WS-Beauty Facepack',
+    description: 'A rejuvenating face pack made with natural herbs to give your skin a radiant glow.',
+    image: image1,
+    tags:'Normal Skin type',
+    ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
+    rating:4.5,
+    price:'launching soon...'
+},
+{
+    id: 2,
+    name: 'WS-Beauty Toner',
+    description: 'A refreshing toner infused with natural ingredients to balance and tone your skin.',
+    image: tonerr,
+    tags:'All Skin types',
+    ingredients:['Rose Water',' Witch Hazel',' Aloe Vera Extract'],
+    rating:4.3,
+    price:'launching soon...'
+},
+{
+    id: 3,
+    name: 'WS-Beauty Lipbalm',
+    description: 'A nourishing lip balm made with organic oils to keep your lips soft and hydrated all day.',
+    image: lipbalm,
+    tags:'All Dry lips',
+    ingredients:['Beeswax',' Coconut Oil',' Shea Butter',' Vitamin E'],
+    rating:4.6,
+    price:'launching soon...'
+}
+]
 
 
 
-export const facepacks = [{
+export const AllProducts = [{
     id: 1,
     name: 'WS-Beauty Facepack',
     description: 'A rejuvenating face pack made with natural herbs to give your skin a radiant glow.',
@@ -35,12 +70,25 @@ export const facepacks = [{
     rating:4.7,
     price:'launching soon...'
 }
-]
+,
 
-export const tonners=[{
-    id: 1,
+{
+    id: 4,
     name: 'WS-Beauty Tonner',
     description: 'A refreshing toner infused with natural ingredients to balance and tone your skin.',
-    image: image4,
+    image: tonerr,
     tags:'All Skin types',
-    price:'launching soon...'}]
+    ingredients:['Rose Water',' Witch Hazel',' Aloe Vera Extract'],
+    rating:4.3,
+    price:'launching soon...'},
+    {
+        id:5,
+        name: 'WS-Beauty Lipbalm',
+    description: 'A nourishing lip balm made with organic oils to keep your lips soft and hydrated all day.',
+    image: lipbalm,
+    tags:'All Dry lips',
+    ingredients:['Beeswax',' Coconut Oil',' Shea Butter',' Vitamin E'],
+    rating:4.6,
+    price:'launching soon...'
+    }
+]
