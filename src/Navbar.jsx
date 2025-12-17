@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { FiX } from 'react-icons/fi';
 import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { IoCartOutline } from "react-icons/io5";
+import { IoMdPerson } from "react-icons/io";
 
 const Navbar = () => {
 
@@ -44,6 +46,10 @@ const Navbar = () => {
                 )}
                 <li className='text-md ml-4 cursor-pointer font-semibold transition-all hover:scale-110  text-gray-100 hover:text-white'><Link to="/contact" >Contact</Link></li>
             </ul>
+            {/* <div className='flex justify-around'>
+           <p><IoCartOutline size={23}/></p>
+           <p><IoMdPerson /></p>
+            </div> */}
             <div className='md:hidden'>
                 {isMenuOpen ? (<FiX className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(false)}/>):(<FiMenu className='text-3xl cursor-pointer text-white' onClick={()=>setIsMenuOpen(true)}/>)}
             </div>

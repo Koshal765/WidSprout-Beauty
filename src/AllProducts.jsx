@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { IoCartOutline } from "react-icons/io5";
+import { MdCurrencyRupee } from "react-icons/md";
 
 const AllProducts = () => {
 
@@ -47,8 +49,11 @@ const Closeproduct=()=>{
             <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
             <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>
             <p className="text-sm text-gray-700 mb-3">{item.description}</p>
-            <div className='bg-amber-700 w-full py-2 rounded-lg '>
-            <p className="text-md font-bold   text-white text-center ">{item.price}</p></div>
+            <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{item.price}</p>
+                       <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
+                         <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p>
+                         <p className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105'><IoCartOutline size={23} className='ml-8'/></p>
+                       </div>
           </motion.div>
         ))}
       </div>
@@ -74,9 +79,11 @@ const Closeproduct=()=>{
       ))}
       </div>
       <p className='mb-5 font-semibold'>{selectedProduct.rating}⭐ rating</p>
-      <div className='bg-amber-700 w-full py-2 rounded-lg '>
-        <p className="text-md font-bold   text-white text-center ">{selectedProduct.price}</p>
-      </div>
+      <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{selectedProduct.price}</p>
+                 <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
+                   <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p>
+                   <p className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105'><IoCartOutline size={23} className='ml-8'/></p>
+                 </div>
       </div>
       </div>
     </div>

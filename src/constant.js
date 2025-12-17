@@ -14,7 +14,7 @@ export const products = [{
     tags:'Normal Skin type',
     ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
     rating:4.5,
-    price:'launching soon...'
+    price:449
 },
 {
     id: 2,
@@ -24,7 +24,7 @@ export const products = [{
     tags:'All Skin types',
     ingredients:['Rose Water',' Witch Hazel',' Aloe Vera Extract'],
     rating:4.3,
-    price:'launching soon...'
+    price:549
 },
 {
     id: 3,
@@ -34,7 +34,7 @@ export const products = [{
     tags:'All Dry lips',
     ingredients:['Beeswax',' Coconut Oil',' Shea Butter',' Vitamin E'],
     rating:4.6,
-    price:'launching soon...'
+    price:300
 }
 ]
 
@@ -48,7 +48,7 @@ export const AllProducts = [{
     tags:'Normal Skin type',
     ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
     rating:4.5,
-    price:'launching soon...'
+    price:449
 },
 {
     id: 2,
@@ -58,7 +58,7 @@ export const AllProducts = [{
     tags:'Oily Skin type',
     ingredients:['Masoor Flour',' Jowar Flour',' Multani Mitti',' Moong Flour'],
     rating:4.2,
-    price:'launching soon...'
+    price:449
 },
 {
     id: 3,
@@ -68,7 +68,7 @@ export const AllProducts = [{
     tags:'Combination Skin type',
     ingredients:['Masoor Flour',' Multani Mitti',' Moong Flour ',' Jowar Flour ',' Turmeric Powder '],
     rating:4.7,
-    price:'launching soon...'
+    price:449
 }
 ,
 
@@ -80,7 +80,8 @@ export const AllProducts = [{
     tags:'All Skin types',
     ingredients:['Rose Water',' Witch Hazel',' Aloe Vera Extract'],
     rating:4.3,
-    price:'launching soon...'},
+    price:549
+},
     {
         id:5,
         name: 'WS-Beauty Lipbalm',
@@ -89,6 +90,6 @@ export const AllProducts = [{
     tags:'All Dry lips',
     ingredients:['Beeswax',' Coconut Oil',' Shea Butter',' Vitamin E'],
     rating:4.6,
-    price:'launching soon...'
+    price:300
     }
 ]
