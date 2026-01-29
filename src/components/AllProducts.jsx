@@ -1,5 +1,5 @@
 import React from 'react'
-import { AllProducts as allProducts } from './constant';
+import { AllProducts as allProducts } from '../constant';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { motion } from 'framer-motion';
@@ -19,6 +19,20 @@ const Closeproduct=()=>{
 }
 
 
+const addToCart=(product)=>{
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cart.find(item => item.id === product.id);
+  if (existingProduct) {
+    existingProduct.quantity += 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert('Product added to cart!');
+  window.dispatchEvent(new Event('cartUpdated'));
+}
+
+
 
   return (
     <div className='w-full min-h-screen flex items-center py-24 bg-cover bg-center'>
@@ -30,10 +44,7 @@ const Closeproduct=()=>{
       </div>
       <div  className='flex justify-around'>
 
-        <div className='flex items-center '>
-           <MdKeyboardArrowLeft  />
-        <Link to="/" className="text-amber-900 underline inline-block transition-all hover:scale-105">Back to Home</Link>
-      </div>
+      
       
       
       </div>
@@ -43,7 +54,7 @@ const Closeproduct=()=>{
             key={id}
             className="w-72 border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
          onClick={()=>Openproduct(item)} >
-            <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200">
+            <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200 ">
               <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center" />
             </div>
             <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
@@ -51,8 +62,11 @@ const Closeproduct=()=>{
             <p className="text-sm text-gray-700 mb-3">{item.description}</p>
             <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{item.price}</p>
                        <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
-                         <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p>
-                         <p className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105'><IoCartOutline size={23} className='ml-8'/></p>
+                         <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button>
+                         <button
+                         onClick={()=>addToCart(product)}
+                         
+                         className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center'><IoCartOutline size={23} /></button>
                        </div>
           </motion.div>
         ))}
@@ -81,8 +95,11 @@ const Closeproduct=()=>{
       <p className='mb-5 font-semibold'>{selectedProduct.rating}⭐ rating</p>
       <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{selectedProduct.price}</p>
                  <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
-                   <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p>
-                   <p className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105'><IoCartOutline size={23} className='ml-8'/></p>
+                   <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button>
+                   <button
+                   onClick={()=>addToCart(selectedProduct)}
+                   
+                   className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center'><IoCartOutline size={23} className=''/></button>
                  </div>
       </div>
       </div>

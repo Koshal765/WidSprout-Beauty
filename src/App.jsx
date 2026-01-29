@@ -1,14 +1,25 @@
 import React from 'react'
 import './App.css'
-import Navbar from './Navbar'
-import Home from './Home'
-import Feedback from './Feedback'
-import Reviews from './Reviews'
 import { useState } from 'react'
-import About from './About'
-import Products from './Products'
-import Contact from './Contact'
-import Footer from './Footer'
+import {  Routes, Route } from 'react-router-dom';
+
+
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Landingpage from './components/Landingpage'
+import About from './components/About'
+import Products from './components/Products'
+import Reviews from './components/Reviews'
+import Footer from './components/Footer'
+
+import Feedback from './components/Feedback'
+import AllProducts from './components/AllProducts'
+import Login from './components/Login'
+import Cart from './components/Cart'
+import Contact from './components/Contact'
+
+
+
 
 
 
@@ -19,14 +30,19 @@ function App() {
  
   return (
     <>
-     <Navbar/>
-     <Home/>
-     <About/>
-     <Products/>
-     <Reviews refresh={refresh}/>
-     <Feedback setRefresh={setRefresh}/>
-     {/* <Contact/> */}
-     <Footer/>
+       <Navbar /> {/* ✅ Always visible */}
+
+      <Routes>
+        <Route
+          path="/"
+          element={<Home refresh={refresh} setRefresh={setRefresh} />}
+        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/all_products" element={<AllProducts />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    
  
 
     </>

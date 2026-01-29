@@ -8,5 +8,18 @@
   /* background-color: rgb(189, 183, 177); */
  
 body{
-  background-color: #f6efe4;
+  background-color: #f5e5cc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bottle {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  z-index: 40;
+  will-change: transform;
 }
