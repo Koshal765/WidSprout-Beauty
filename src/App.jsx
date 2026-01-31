@@ -17,6 +17,7 @@ import AllProducts from './components/AllProducts'
 import Login from './components/Login'
 import Cart from './components/Cart'
 import Contact from './components/Contact'
+import AdminPanel from './components/AdminPanel'
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/all_products" element={<AllProducts />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     
  

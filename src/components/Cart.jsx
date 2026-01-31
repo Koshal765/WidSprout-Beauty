@@ -105,27 +105,20 @@ const decreseQuantity = (id) => {
       </motion.div>
     ))}
 
-<div className='flex justify-around items-center p-3 '>
-  <button className='text-xl px-3 py-2 border rounded-3xl bg-amber-700 text-amber-100 transition-all hover:scale-110'>Order Now</button>
+<div className='flex justify-between items-center p-3  border-t-amber-300 bg-amber-700 '>
+ <button className='border px-3 py-2 rounded-full text-sm tracking-widest  border-black  hover:bg-black hover:text-white transition-all duration-300'>Order Now</button>
   <h2 className='text-2xl font-semibold text-right '>
-    Total: ₹{cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}
+     ₹{cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}
   </h2>
 
 </div>
 
   </div>
 
-
-
-
 )
 }
 
-
-
 </div>
-
-
 </>
   )
 }

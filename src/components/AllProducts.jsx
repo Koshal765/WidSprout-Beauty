@@ -55,7 +55,7 @@ const addToCart=(product)=>{
             className="w-72 border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
          onClick={()=>Openproduct(item)} >
             <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200 ">
-              <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center" />
+              <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center  transition-transform duration-700 ease-out hover:scale-115" />
             </div>
             <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
             <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>

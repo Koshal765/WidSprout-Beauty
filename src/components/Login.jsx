@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { LuShieldCheck } from "react-icons/lu";
 
+import { useNavigate } from "react-router-dom";
 export default function AuthFlipPreview() {
   const [isLogin, setIsLogin] = useState(true);
   const [hidepass, setHidepass] = useState(true);
@@ -23,10 +24,33 @@ export default function AuthFlipPreview() {
     setUser({ username: "", password: "", cnfpass: "" });
   };
 
+const Navigate = useNavigate();
+
+  const handleAdminLogin = (e) => {
+    // Implement admin login logic here
+    e.preventDefault();
+if(role === "admin" && user.username === "admin" && user.password === "adminpass"){
+  // Successful admin login
+  localStorage.setItem("isAdminLoggedIn", "true");
+  Navigate('/admin');
+} else {
+  alert("Invalid admin credentials");
+}
+
+  };
+
+
+  useEffect(() => {
+    const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");  
+    if (isAdminLoggedIn === "true") {
+      Navigate('/admin');
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f6efe4]">
       {/* perspective */}
-      <div className="perspective-[1200px]">
+      <div className="perspective-distant">
         <motion.div
         initial={{ y: 90 , opacity: 0 }}
           animate={{ rotateY: isLogin ? 0 : 180 ,opacity:1, y:40}}
@@ -67,7 +91,7 @@ export default function AuthFlipPreview() {
                   <LuShieldCheck size={22} />
                 </button>
               </div>
-
+          <form  onSubmit={handleAdminLogin}>
               <div className="mt-8">
                 <input
                   name="username"
@@ -95,10 +119,12 @@ export default function AuthFlipPreview() {
                 </span>
               </div>
 
-              <button className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
+              <button 
+            type="submit"
+              className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
                 Login
               </button>
-
+              </form>
               <p className="text-center text-sm mt-6">
                 Create account?{" "}
                 <button
@@ -107,9 +133,12 @@ export default function AuthFlipPreview() {
                 >
                   Sign Up
                 </button>
-              </p>
+              </p>    
+                
             </div>
+            
           </div>
+   
 
           {/* SIGN UP */}
           <div className="absolute inset-0 rotate-y-180 backface-hidden">
@@ -120,7 +149,7 @@ export default function AuthFlipPreview() {
               <p className="text-center text-sm text-gray-600 mt-2">
                 Start your natural beauty journey
               </p>
-
+            <form>
               <div className="mt-8">
                 <input
                   name="username"
@@ -162,6 +191,7 @@ export default function AuthFlipPreview() {
               <button className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
                 Sign Up
               </button>
+              </form>
 
               <p className="text-center text-sm mt-6">
                 Have an account?{" "}
@@ -182,6 +212,8 @@ export default function AuthFlipPreview() {
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
       `}</style>
+      
     </div>
+
   );
 }

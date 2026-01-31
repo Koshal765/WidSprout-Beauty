@@ -7,45 +7,19 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect , useRef } from 'react';
 
-// gsap.registerPlugin(ScrollTrigger);
+
 
 const Landingpage = () => {
-
-// const roseRef = useRef(null);
-
-// useEffect(() => {
-
-//   gsap.set(roseRef.current, { y: 0 });
-
-//   gsap.fromTo(roseRef.current, 
-//     {
-//         y: 80,
-//         opacity: 0,
-//       },
-//       {
-//         y: -10,
-//         opacity: 1,
-//         duration: 1,
-//         ease: "power2.out", // closest to easeOut
-//         delay: 1,
-//         scrollTrigger: {
-//           trigger: roseRef.current,
-//           start: "top 80%",
-//           once: true,
-//       }
-//     });
-// }, []);
-
 
   return (
     <section className='  w-full h-screen relative overflow-hidden pt-20 scroll-mt-24 ' id='Home'>
       <div className=' relative flex items-center justify-center overflow-visible h-full '>
       <div className="text-center relative z-0 -translate-y-11">
         
-        <motion.h1  initial={{ y: 60, opacity: 0 }}
+        <motion.h1  initial={{ y: 120, opacity: 0 }}
           whileInView={{ y: 0, opacity: 0.9 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          viewport={{ once:true  }} className='text-4xl sm:text-6xl md:text-8xl lg:text-9xl  font-bold tracking-wider text-center  '>WILDSPROUT</motion.h1>
+          viewport={{ once:true  }} className='text-4xl sm:text-6xl md:text-8xl lg:text-9xl   tracking-wider text-center  ' style={{fontFamily:'Cinzel'}}>WILDSPROUT</motion.h1>
           
 
            
@@ -59,16 +33,7 @@ const Landingpage = () => {
 </div>
 
  
-          {/* < motion.img   
-            ref={roseRef}
-          // initial={{ y:80, opacity: 0 }}
-          // whileInView={{ y: 0, opacity: 1 }}
-          // transition={{ duration: 0.5, ease: 'easeOut', delay:1.5 }}
-          // viewport={{ once: true }} 
-          
-          
-          src={rose} alt="Rose" className='w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80  object-contain  absolute ' /> */}
-
+         
        <motion.div
         initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}

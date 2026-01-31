@@ -15,6 +15,7 @@ import { useEffect , useRef } from 'react';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AdminPanel from './AdminPanel.jsx'
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -143,6 +144,7 @@ const location = useLocation();
       <Products />
       <Reviews refresh={refresh} />
       <Feedback setRefresh={setRefresh} />
+      
       <Footer />
     
 </div>
