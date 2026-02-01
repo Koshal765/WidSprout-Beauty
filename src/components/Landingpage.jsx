@@ -14,7 +14,7 @@ const Landingpage = () => {
   return (
     <section className='  w-full h-screen relative overflow-hidden pt-20 scroll-mt-24 ' id='Home'>
       <div className=' relative flex items-center justify-center overflow-visible h-full '>
-      <div className="text-center relative z-0 -translate-y-11">
+      <div className="text-center relative z-0 md:-translate-y-11">
         
         <motion.h1  initial={{ y: 120, opacity: 0 }}
           whileInView={{ y: 0, opacity: 0.9 }}

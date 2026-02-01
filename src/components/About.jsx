@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section  className="w-full pt-35 scroll-mt-28  relative  h-[800px] overflow-hidden" >
-        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6  ' id='About'>
+    <section  className="w-full py-24 scroll-mt-28  relative  h-[800px] overflow-hidden " >
+        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6   'id='About' >
 
   {/* <div
     id="about-bottle-anchor"
@@ -20,7 +20,7 @@ const About = () => {
         
         className='text-center text-2xl md:text-2xl lg:text-6xl  font-extrabold ' style={{fontFamily:'Dancing Script, cursive'}}>About Us</motion.h1>
     
-    <div className='  h-100 flex justify-around items-center rounded-lg mt-6 p-6  '>
+    <div className='  h-100 flex justify-around items-center rounded-lg mt-16 p-6   '>
       <div className=' w-full md:w-3/4 lg:w-3/4  '>  
      
      <motion.div

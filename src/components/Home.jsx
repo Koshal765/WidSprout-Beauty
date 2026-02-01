@@ -32,7 +32,7 @@ useEffect(() => {
 
    gsap.set(toner1Ref.current, {
     xPercent: -40,
-    yPercent: -32,
+    yPercent: -40,
     rotation: 20,
     // rotateY: -30,
     // rotateX: 10,
@@ -93,7 +93,7 @@ ScrollTrigger.create({
       position: "fixed",
       top: "28%",
       left: "50%",
-      xPercent: -40,
+      xPercent: -45,
       yPercent: -8,
       scale: 1.8,
       rotation: 20,
