@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShoppingBag, Package,  Users, BarChart3,} from "lucide-react";
 import { motion } from "framer-motion";
 import { AllProducts as allProducts } from '../constant';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router";
+import AddProduct from './AddProduct';
 
 
 const AdminPanel=()=> {
@@ -65,6 +66,22 @@ const AdminPanel=()=> {
 
 
 const Dashboard = () => {
+
+const [addproductModalOpen, setAddproductModalOpen] = useState(false);
+
+
+ useEffect(() => {
+  if (addproductModalOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => (document.body.style.overflow = "auto");
+}, [addproductModalOpen]);
+
+
+
   return (
     <>
       <h2 className="text-2xl font-semibold mb-6">
@@ -79,7 +96,9 @@ const Dashboard = () => {
       </div>
 
       <div className="flex gap-4">
-        <button className="px-6 py-2 rounded-full bg-[#8B5E34] text-white hover:bg-[#6f4a29] transition">
+        <button 
+        onClick={()=>setAddproductModalOpen(true)}
+        className="px-6 py-2 rounded-full bg-[#8B5E34] text-white hover:bg-[#6f4a29] transition">
           Add New Product
         </button>
 
@@ -87,6 +106,9 @@ const Dashboard = () => {
           View Orders
         </button>
       </div>
+
+{ addproductModalOpen && <AddProduct onClose={()=>setAddproductModalOpen(false)} /> }
+
     </>
   );
 }
@@ -99,13 +121,13 @@ const Products = () => {
   {allProducts.map((product, index) => (
     <div
       key={index}
-      className="bg-amber-50 flex flex-col items-center p-6 rounded-xl shadow-lg hover:shadow-xl transition"
+      className="bg-amber-50 flex flex-col items-center p-6 rounded-xl shadow-lg hover:shadow-xl transition border border-amber-700"
     >
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-40 object-cover rounded-lg mb-4"
-      />
+      
+     <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200">
+              <img src={product.image} alt={product.name} className="h-full w-full object-cover object-center transition-transform duration-800 ease-out hover:scale-110  " />
+            </div>
+      
       <h3 className="font-semibold text-gray-900 mb-1">{product.name}</h3>
       <p className="text-sm text-gray-600 mb-2">{product.tags}</p>
       <div className="text-gray-700 font-semibold mb-4">₹{product.price}</div>

@@ -19,7 +19,7 @@ const Landingpage = () => {
         <motion.h1  initial={{ y: 120, opacity: 0 }}
           whileInView={{ y: 0, opacity: 0.9 }}
           transition={{ duration: 1, ease: 'easeOut' }}
-          viewport={{ once:true  }} className='text-4xl sm:text-6xl md:text-8xl lg:text-9xl   tracking-wider text-center  ' style={{fontFamily:'Cinzel'}}>WILDSPROUT</motion.h1>
+          viewport={{ once:true  }} className='text-5xl sm:text-7xl md:text-8xl lg:text-9xl   tracking-tight  sm:tracking-wide   md:tracking-wide  lg:tracking-wide text-center  ' style={{fontFamily:'Cinzel'}}>WILDSPROUT</motion.h1>
           
 
            
@@ -27,7 +27,7 @@ const Landingpage = () => {
         <motion.h1 initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 0.9 }}
           transition={{ duration: 1, ease: 'easeOut' ,delay:1.5}}
-          viewport={{once:true}}  className='text-3xl sm:text-3xl md:text-5xl lg:text-7xl font-extrabold  tracking-widest  italic ' style={{ fontFamily: 'Dancing Script, cursive' }}>Beauty</motion.h1>
+          viewport={{once:true}}  className='text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold  tracking-widest  italic ' style={{ fontFamily: 'Dancing Script, cursive' }}>Beauty</motion.h1>
 
       
 </div>

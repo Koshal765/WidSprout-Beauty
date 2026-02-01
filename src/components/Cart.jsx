@@ -64,7 +64,7 @@ const decreseQuantity = (id) => {
   
   className='text-center'>
   <p className=' mt-25 text-gray-600 text-3xl'>Your cart is empty.</p>
- <Link to="/all_products"><button className='bg-amber-700 mt-10 py-2 px-4 text-xl font-semibold text-gray-200 rounded-full hover:bg-amber-800 transition-all hover:scale-105'>Shop now</button></Link>
+ 
  
   </motion.div>
   

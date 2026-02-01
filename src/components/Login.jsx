@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion,AnimatePresence } from "framer-motion";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { LuShieldCheck } from "react-icons/lu";
 
 import { useNavigate } from "react-router-dom";
-export default function AuthFlipPreview() {
+import toner1 from '../assets/toner1.png';
+import lipbalm2 from '../assets/lipbalm2.png';
+import mask2 from '../assets/mask2.png';
+import { ToastContainer , toast , Bounce} from "react-toastify";
+import Swal2 from "sweetalert2";
+
+
+
+
+
+const Login=()=> {
   const [isLogin, setIsLogin] = useState(true);
   const [hidepass, setHidepass] = useState(true);
   const [role, setRole] = useState("user");
@@ -14,6 +24,7 @@ export default function AuthFlipPreview() {
     password: "",
     cnfpass: "",
   });
+  const [imageIndex, setImageIndex] = useState(0);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -31,11 +42,54 @@ const Navigate = useNavigate();
     e.preventDefault();
 if(role === "admin" && user.username === "admin" && user.password === "adminpass"){
   // Successful admin login
-  localStorage.setItem("isAdminLoggedIn", "true");
-  Navigate('/admin');
-} else {
-  alert("Invalid admin credentials");
+ 
+
+ Swal2.fire({
+      title: "Login Successful!",
+      text: 'Welcome Admin!',
+      icon: "success",
+      confirmButtonColor: "#10b981", // emerald color
+      theme: "dark"
+      
+    }).then((result)=>{
+      if(result.isConfirmed){
+       Navigate('/admin');
+      localStorage.setItem("isAdminLoggedIn", "true");
+      }
+    }
+    )
+
+ 
+} else if(role === "admin" && isLogin === true){
+  toast.error("Invalid admin credentials");
 }
+
+
+if(role === "user"&& isLogin === true && user.username === "user" && user.password === "userpass"){
+
+  // Successful user login
+
+
+Swal2.fire({
+      title: "Login Successful!",
+      text: 'Welcome User!',
+      icon: "success",
+      confirmButtonColor: "#10b981", // emerald color
+      theme: "dark"
+      
+    }).then((result)=>{
+      if(result.isConfirmed){
+       Navigate('/user');
+      localStorage.setItem("isUserLoggedIn", "true");
+      }
+    }
+    )
+
+
+} else if(role === "user" && isLogin === true){
+  toast.error("Invalid user credentials");
+}
+
 
   };
 
@@ -45,10 +99,50 @@ if(role === "admin" && user.username === "admin" && user.password === "adminpass
     if (isAdminLoggedIn === "true") {
       Navigate('/admin');
     }
+
+    const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");  
+    if (isUserLoggedIn === "true") {
+      Navigate('/user');
+    }
   }, []);
 
+const images = [toner1,lipbalm2,mask2]
+
+
+useEffect(() => {
+    const interval = setInterval(() => {
+      setImageIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f6efe4]">
+    <div className="min-h-screen flex items-center justify-center gap-30  bg-[#f6efe4]  ">
+
+<motion.div 
+initial={{opacity:0,y:90}}
+animate={{opacity:1,y:0}}
+transition={{ duration: 0.9, ease: "easeInOut" }}
+
+className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)] rounded-3xl ">
+<AnimatePresence mode="wait">
+            <motion.img
+              key={images[imageIndex]}
+              src={images[imageIndex]}
+              alt="Product showcase"
+              className="w-full h-full object-cover"
+              initial={{ opacity: 0, scale: 0.8, y: -180 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 60 }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
+            />
+          </AnimatePresence>
+
+</motion.div>
+
+
+
       {/* perspective */}
       <div className="perspective-distant">
         <motion.div
@@ -212,8 +306,26 @@ if(role === "admin" && user.username === "admin" && user.password === "adminpass
         .backface-hidden { backface-visibility: hidden; }
         .rotate-y-180 { transform: rotateY(180deg); }
       `}</style>
+
+<ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
+
       
     </div>
 
   );
 }
+
+
+export default Login;

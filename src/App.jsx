@@ -18,6 +18,7 @@ import Login from './components/Login'
 import Cart from './components/Cart'
 import Contact from './components/Contact'
 import AdminPanel from './components/AdminPanel'
+import UserPanel from './components/UserPanel'
 
 
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/user" element={<UserPanel />} />
       </Routes>
     
  

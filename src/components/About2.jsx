@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 
 const About2 = () => {
       return (
-            <section id='About' className="w-full pt-35 scroll-mt-28  relative  h-[800px] overflow-hidden flex justify-center " >
-                  <div className='w-[1000px] h-100  mt-10 flex justify-around items-center gap-3 '>
-                        <div className='w-75 h-100 rounded-full  bg-linear-to-b from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)] flex justify-center items-center'>
+            <section id='About' className="w-full pt-10 md:pt-35 scroll-mt-28  relative h-[900px]  md:h-[800px] overflow-hidden flex justify-center " >
+                  <div className='w-[1000px] h-100  md:mt-10  flex justify-around items-center gap-3 flex-wrap'>
+                        <div className='w-50 h-75 md:w-75 md:h-100 rounded-full  bg-linear-to-b from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)] flex justify-center items-center'>
                               <motion.img
                                     initial={{ opacity: 0, y: 280 }}
                                     whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ const About2 = () => {
                         >
                               <motion.h1
                                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                                    className="font-serif text-4xl md:text-5xl text-[#6b3f1d] leading-tight"
+                                    className="font-serif text-2xl md:text-5xl text-[#6b3f1d] leading-tight"
                               >
                                     Pure Care<br />Inspired by Ancient Rituals
                               </motion.h1>
@@ -41,14 +41,14 @@ const About2 = () => {
 
                               <motion.p
                                     variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-                                    className="text-[#7a5230] max-w-lg"
+                                    className="text-[#7a5230] max-w-lg "
                               >
                                     A luxurious lip ritual crafted with time-honored botanicals to nourish,
                                     hydrate, and restore your natural glow.
                               </motion.p>
 
 
-                              <div className="grid grid-cols-2 gap-6">
+                              <div className="grid grid-cols-2 gap-6 ">
                                     {[{ icon: Leaf, text: "100% Natural" }, { icon: Sparkles, text: "Cruelty Free" }, { icon: Droplets, text: "Deep Hydration" }, { icon: Flower2, text: "Ancient Wisdom" }].map((item, i) => (
                                           <motion.div
                                                 key={i}
@@ -62,7 +62,7 @@ const About2 = () => {
                                     ))}
                               </div>
 
-
+                             <div className=' flex justify-center'>
                               <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
@@ -72,7 +72,7 @@ const About2 = () => {
                            >
 
                                     <Link to="/all_products">Shop the Ritual</Link>
-                              </motion.button>
+                              </motion.button></div>
                         </motion.div>
 
                   </div>

@@ -108,6 +108,8 @@ ScrollTrigger.create({
 
 const location = useLocation();
 
+
+
   useEffect(() => {
     if (!location.state?.scrollTo) return;
 
@@ -133,7 +135,7 @@ const location = useLocation();
       <img
   ref={toner1Ref}
   src={toner1}
-  className="fixed top-1/2 left-1/2 w-56 z-40 pointer-events-none"
+  className="fixed top-1/2 left-1/2  w-26 sm:w-36 md:w-46      lg:w-56 z-40 pointer-events-none"
   alt="Rose bottle"
 />
 
@@ -143,7 +145,7 @@ const location = useLocation();
      <About2 />
       <Products />
       <Reviews refresh={refresh} />
-      <Feedback setRefresh={setRefresh} />
+      {/* <Feedback setRefresh={setRefresh} /> */}
       
       <Footer />
     

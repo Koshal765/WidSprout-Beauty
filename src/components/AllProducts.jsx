@@ -37,7 +37,7 @@ const addToCart=(product)=>{
   return (
     <div className='w-full min-h-screen flex items-center py-24 bg-cover bg-center'>
 
-      <div className='max-w-[1100px] w-full mx-auto px-6'>
+      <div className='max-w-7xl w-full mx-auto px-6 '>
         <section className='' id='AllProducts' >
       <div className='text-center mb-10'>
         <h1 className='text-3xl md:text-4xl lg:text-4xl font-serif font-semibold mb-10 text-amber-700'>All Products</h1>
@@ -48,11 +48,11 @@ const addToCart=(product)=>{
       
       
       </div>
-      <div className="w-full flex flex-wrap justify-center gap-12 py-10">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-4">
         {allProducts.map((item, id) => (
           <motion.div
             key={id}
-            className="w-72 border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
+            className="w-full border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
          onClick={()=>Openproduct(item)} >
             <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200 ">
               <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center  transition-transform duration-700 ease-out hover:scale-115" />
@@ -61,12 +61,14 @@ const addToCart=(product)=>{
             <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>
             <p className="text-sm text-gray-700 mb-3">{item.description}</p>
             <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{item.price}</p>
-                       <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
-                         <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button>
+                       <div className=' flex w-full p-4 rounded-lg items-center gap-6 '>
+                         {/* <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button> */}
                          <button
-                         onClick={()=>addToCart(product)}
+                         onClick={(e)=>{
+                          e.preventDefault();
+                          addToCart(item)}}
                          
-                         className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center'><IoCartOutline size={23} /></button>
+                         className=' w-full text-center text-amber-100 bg-amber-700 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center gap-2'>Add to Cart<IoCartOutline size={23} /></button>
                        </div>
           </motion.div>
         ))}
@@ -94,12 +96,12 @@ const addToCart=(product)=>{
       </div>
       <p className='mb-5 font-semibold'>{selectedProduct.rating}⭐ rating</p>
       <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{selectedProduct.price}</p>
-                 <div className=' grid grid-cols-2 w-full p-4 rounded-lg items-center gap-6 '>
-                   <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button>
+                 <div className='  w-full p-4 rounded-lg items-center gap-6 '>
+                   {/* <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button> */}
                    <button
                    onClick={()=>addToCart(selectedProduct)}
                    
-                   className=' text-center text-amber-700 bg-amber-100 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center'><IoCartOutline size={23} className=''/></button>
+                   className='w-full text-center text-amber-100 bg-amber-700 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center gap-2'>Add to Cart<IoCartOutline size={23} className=''/></button>
                  </div>
       </div>
       </div>
