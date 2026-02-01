@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { IoCartOutline } from "react-icons/io5";
 import { MdCurrencyRupee } from "react-icons/md";
+import { ToastContainer , toast,Bounce } from 'react-toastify';
 
 const AllProducts = () => {
 
@@ -26,10 +27,11 @@ const addToCart=(product)=>{
     existingProduct.quantity += 1;
   } else {
     cart.push({ ...product, quantity: 1 });
-  }
+  
   localStorage.setItem('cart', JSON.stringify(cart));
-  alert('Product added to cart!');
+  toast.success('Product added to cart!');
   window.dispatchEvent(new Event('cartUpdated'));
+  }
 }
 
 
@@ -109,6 +111,23 @@ const addToCart=(product)=>{
   </div>
 
 )}
+
+
+<ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
+
+
 
     </div>
   )

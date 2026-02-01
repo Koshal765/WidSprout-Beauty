@@ -63,6 +63,11 @@ const Navbar = () => {
   }, []);
 
 
+  const handleLoginClick =()=>{
+    navigate("/login")
+    setIsMenuOpen(false)
+  }
+
 
   return (
     <nav>
@@ -108,8 +113,18 @@ const Navbar = () => {
               )
               )}
 
-              <li className='text-amber-700 cursor-pointer font-semibold transition-all hover:scale-110 mt-3'><Link to="/contact">Contact</Link></li>
-             <Link to="/login"> <li className='text-amber-700 cursor-pointer font-semibold transition-all hover:scale-110 mt-3 flex justify-center items-center gap-1'>  <IoMdPerson /> Login</li></Link>   </ul>
+             <li>
+              <button onClick={()=>{
+                navigate("/contact");
+                setIsMenuOpen(false);
+              }}
+              
+              className='text-amber-700 cursor-pointer font-semibold transition-all hover:scale-110 mt-3'>Contact</button></li>
+              <li className='flex justify-center '>
+                <button
+              onClick={handleLoginClick}
+              className='text-amber-700 cursor-pointer font-semibold transition-all hover:scale-110 mt-3 flex justify-center items-center gap-1 '>  <IoMdPerson /> Login</button> </li>
+              </ul>
           )}
         </div>
 

@@ -54,6 +54,7 @@ const About2 = () => {
                                                 key={i}
                                                 variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
                                                 whileHover={{ y: -6 }}
+                                                
                                                 className="flex items-center gap-4 rounded-2xl bg-white/40 backdrop-blur-md p-4 shadow-lg"
                                           >
                                                 <item.icon className="text-[#8b5a2b]" />

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoCartOutline } from "react-icons/io5";
 import { MdCurrencyRupee } from "react-icons/md";
+import { ToastContainer,toast,Bounce } from 'react-toastify';
 
 
 const Products = () => {
@@ -28,7 +29,7 @@ const addToCart=(product)=>{
     cart.push({ ...product, quantity: 1 });
   }
   localStorage.setItem('cart', JSON.stringify(cart));
-  alert('Product added to cart!');
+  toast.success('Product added to cart!');
 
   window.dispatchEvent(new Event('cartUpdated'));
 }
@@ -112,6 +113,23 @@ const addToCart=(product)=>{
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
      className='text-white font-semibold py-2 px-6 rounded-lg border bg-black transition-all hover:scale-105'  >View More</button></Link>
       </motion.div>
+
+<ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
+
+
+
     </section>
   )
 }

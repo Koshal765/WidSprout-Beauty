@@ -13,7 +13,7 @@ const UserPanel = () => {
 
 
   return (
-     <div className="min-h-screen bg-neutral-50  flex flex-col md:grid md:grid-cols-12 py-20">
+     <div className="min-h-screen bg-neutral-50 w-full flex flex-col md:grid md:grid-cols-12 py-20">
   <motion.aside 
   initial={{ x: 0, opacity: 0 }}
   animate={{ x: 0, opacity: 1 }}

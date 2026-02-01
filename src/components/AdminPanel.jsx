@@ -15,7 +15,7 @@ const AdminPanel=()=> {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50  flex flex-col md:grid md:grid-cols-12 py-20">
+    <div className="min-h-screen w-full bg-neutral-50  flex flex-col md:grid md:grid-cols-12 py-20">
       {/* Sidebar */}
     <motion.aside 
   initial={{ x: 0, opacity: 0 }}
@@ -53,7 +53,7 @@ const AdminPanel=()=> {
 
 
       {/* Main */}
-      <main className="col-span-10 p-8">
+      <main className=" w-full  md:col-span-10  p-4  md:p-8">
         {activePage === "dashboard" && <Dashboard />}
         {activePage === "products" && <Products />}
         {activePage === "orders" && <Orders />}
@@ -88,14 +88,14 @@ const [addproductModalOpen, setAddproductModalOpen] = useState(false);
         Admin Dashboard
       </h2>
 
-      <div className="grid grid-cols-4 gap-6 mb-10">
+      <div className="   grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6  mb-6 sm:mb-10">
         <Stat icon={<ShoppingBag />} label="Total Orders" />
         <Stat icon={<Package />} label="Products" />
         <Stat icon={<Users />} label="Customers" />
         <Stat icon={<BarChart3 />} label="Revenue" />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <button 
         onClick={()=>setAddproductModalOpen(true)}
         className="px-6 py-2 rounded-full bg-[#8B5E34] text-white hover:bg-[#6f4a29] transition">
