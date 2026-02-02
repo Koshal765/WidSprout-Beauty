@@ -12,6 +12,7 @@ import toner2 from '../assets/toner2.png';
 
 import { useLocation } from 'react-router-dom';
 import { useEffect , useRef } from 'react';
+import {motion} from 'framer-motion'
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,11 +25,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = ({refresh,setRefresh}) => {
 
+  const isDesktop = window.innerWidth >= 768;
 const roseRef = useRef(null);
 const toner1Ref = useRef(null);
 const toner2Ref = useRef(null);
 
 useEffect(() => {
+
+  if(!isDesktop) return;
+
+   const mm = gsap.matchMedia();
+
+     mm.add("(min-width: 768px)", () => {
 
    gsap.set(toner1Ref.current, {
     xPercent: -40,
@@ -100,8 +108,12 @@ ScrollTrigger.create({
     });
   },
 });
+     });
+
+      return () => mm.revert();
 
   }, []);
+
 
 
 
@@ -127,17 +139,38 @@ const location = useLocation();
 
 
 
+
   return (
   
 
 <div className="relative overflow-x-hidden">
       {/* Floating bottle */}
-      <img
-  ref={toner1Ref}
-  src={toner1}
-  className="fixed top-1/2 left-1/2  w-26 sm:w-36 md:w-46      lg:w-56 z-40 pointer-events-none"
-  alt="Rose bottle"
-/>
+     {isDesktop && (
+  <img
+    ref={toner1Ref}
+    src={toner1}
+    className="fixed top-1/2 left-1/2 w-56 z-40 pointer-events-none"
+    alt="Rose bottle"
+  />
+)}
+
+{!isDesktop && (
+  <motion.img
+    src={toner1}
+    className=" absolute w-40 z-40 pointer-events-none"
+    alt="Rose bottle"
+      style={{
+      top: "38vh",                 //  overlaps WILDSPROUT text
+      left: "30%",
+      transform: "translateX(-60%)",
+    
+    }}
+    initial={{ opacity: 0, y: 50, scale: 0.9 , rotate:20}}
+    whileInView={{ opacity: 1, y: 0, scale: 1 , rotate:20 }}
+    transition={{ duration: 0.6, ease: "easeOut",delay:1 }}
+    viewport={{ once: true }}
+  />
+)}
 
 
     <Landingpage/>

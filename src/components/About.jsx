@@ -2,9 +2,10 @@ import React from 'react'
 import { motion } from 'framer-motion';
 
 
+
 const About = () => {
   return (
-    <section  className="w-full py-24 scroll-mt-28  relative  h-[800px] overflow-hidden " >
+    <section  className="w-full py-12 md:py-24 scroll-mt-28  relative  h-full md:h-[800px] overflow-hidden " >
         <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6   'id='About' >
 
   {/* <div
@@ -18,7 +19,7 @@ const About = () => {
         transition={{ duration: 1, ease: 'easeOut' }}
          viewport={{ amount: 0.3 }}
         
-        className='text-center text-2xl md:text-2xl lg:text-6xl  font-extrabold ' style={{fontFamily:'Dancing Script, cursive'}}>About Us</motion.h1>
+        className=' hidden md:block text-center text-2xl md:text-2xl lg:text-6xl  font-extrabold ' style={{fontFamily:'Dancing Script, cursive'}}>About Us</motion.h1>
     
     <div className='  h-100 flex justify-around items-center rounded-lg mt-16 p-6   '>
       <div className=' w-full md:w-3/4 lg:w-3/4  '>  
@@ -29,19 +30,19 @@ whileInView={{ opacity: 1, x: 0 }}
 transition={{ duration: 0.9, ease: "easeOut" }}
 viewport={{ amount: 0.3 }}
 >
-<p className="uppercase tracking-[0.25em]  text-[10px] md:text-xs  mb-4">
+<p className="uppercase tracking-[0.25em]  text-xs  mb-4">
 About WildSprout
 </p>
 
 
-<h2 className="font-serif text-xl md:text-4xl text-amber-900 leading-tight mb-6">
+<h2 className="font-serif text-2xl md:text-4xl text-amber-900 leading-tight mb-6">
 Nature‑Led Beauty,
 <br />
 Thoughtfully Crafted
 </h2>
 
 
-<p className="text-[10px] md:text-base text-gray-700 leading-relaxed max-w-md">
+<p className="text-base text-gray-700 leading-relaxed max-w-md">
 WildSprout Beauty blends pure botanicals with mindful formulation.
 Every product is cruelty‑free, eco‑conscious, and designed to
 enhance your skin’s natural balance — gently, effectively, and
@@ -50,7 +51,7 @@ beautifully.
 </motion.div>
         </div>    
 
-        <div className='bg-linear-to-b from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)]   w-50 h-50 md:w-75 md:h-100 mt-10  lg:ml-15 rounded-full'>
+        <div className='bg-linear-to-b hidden md:block from-[#e8c9a0] to-[#fdf4e3] shadow-[0_40px_80px_rgba(0,0,0,0.15)]   w-50 h-50 md:w-75 md:h-100 mt-10  lg:ml-15 rounded-full'>
 <div
     id="about-bottle-anchor"
     className="absolute  top-1/2 left-1/2 "

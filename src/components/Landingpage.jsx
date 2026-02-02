@@ -12,7 +12,7 @@ import { useEffect , useRef } from 'react';
 const Landingpage = () => {
 
   return (
-    <section className='  w-full h-screen relative overflow-hidden pt-20 scroll-mt-24 ' id='Home'>
+    <section className='  w-full h-screen relative overflow-hidden  md:pt-20  md:scroll-mt-24 ' id='Home'>
       <div className=' relative flex items-center justify-center overflow-visible h-full '>
       <div className="text-center relative z-0 md:-translate-y-11">
         
