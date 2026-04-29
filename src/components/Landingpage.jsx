@@ -1,13 +1,6 @@
 import React from 'react'
-import rose from '../assets/rose2.png';
+
 import {motion} from 'framer-motion';
-// import tilted from '../assets/tilterose.png';
-
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect , useRef } from 'react';
-
-
 
 const Landingpage = () => {
 
@@ -64,8 +57,6 @@ const Landingpage = () => {
     </motion.div> 
 </div>
       
-      
-
     </section>
   )
 }

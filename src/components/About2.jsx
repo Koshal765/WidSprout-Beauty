@@ -1,7 +1,5 @@
 import React from 'react'
-import facemask from '../assets/facemask.png';
 import { motion } from 'framer-motion';
-import mask2 from '../assets/mask2.png';
 import lipbalm2 from '../assets/lipbalm2.png';
 import { Sparkles, Leaf, Droplets, Flower2 } from "lucide-react";
 import { Link } from 'react-router-dom';
@@ -17,7 +15,7 @@ const About2 = () => {
                                     transition={{ duration: 1, ease: "easeOut" }}
                                     viewport={{ amount: 0.3, once: true }}
 
-                                    src={lipbalm2} alt="Facemask" className='w-48 h-56 md:w-72 md:h-72 lg:w-[400px] lg:h-[300px]  ' />
+                                    src={lipbalm2} alt="lipbslm" className='w-48 h-56 md:w-72 md:h-72 lg:w-[400px] lg:h-[300px]  ' />
                         </div>
 
 

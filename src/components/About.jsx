@@ -6,12 +6,9 @@ import { motion } from 'framer-motion';
 const About = () => {
   return (
     <section  className="w-full py-12 md:py-24 scroll-mt-28  relative  h-full md:h-[800px] overflow-hidden " >
-        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6   'id='About' >
+        <div  className='  mt-20 max-w-[1100px] mx-auto lg:px-6' id='About' >
 
-  {/* <div
-    id="about-bottle-anchor"
-    className="absolute top-1/2 left-1/2"
-  /> */}
+ 
           
         <motion.h1
         initial={{ y: 40, opacity: 0.5 }}
@@ -58,11 +55,9 @@ beautifully.
   />
 
 </div>
-               </div>
-                </div>
-
-                
-                
+</div>
+</div>
+  
     </section>
   )
 }

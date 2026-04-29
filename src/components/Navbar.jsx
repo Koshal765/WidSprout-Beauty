@@ -8,6 +8,7 @@ import { IoMdPerson } from "react-icons/io";
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo1 from '../assets/logo1.png';
+import { getCart } from '../services/CartService';
 
 const Navbar = () => {
 
@@ -46,8 +47,16 @@ const Navbar = () => {
 
   const [count, setCount] = useState(0);
 
-  const updateCartCount = () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const updateCartCount = async() => {
+
+const userId = localStorage.getItem("userId");
+
+if(!userId){
+  setCount(0);
+  return;
+} 
+
+    const cart = await getCart(userId);
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     setCount(totalCount);
   }
@@ -55,10 +64,21 @@ const Navbar = () => {
   useEffect(() => {
     updateCartCount();
 
-    window.addEventListener('cartUpdated', updateCartCount);
+    const handleCartUpdated=()=>{
+      updateCartCount();
+    }
+
+    const handleCartCleared=()=>{
+      setCount(0);
+    }
+
+   window.addEventListener("cartUpdated", handleCartUpdated);
+  window.addEventListener("cartCleared", handleCartCleared);
+
 
     return () => {
-      window.removeEventListener('cartUpdated', updateCartCount);
+      window.removeEventListener('cartUpdated', handleCartUpdated);
+      window.removeEventListener("cartCleared", handleCartCleared);
     };
   }, []);
 

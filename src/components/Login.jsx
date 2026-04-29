@@ -11,8 +11,7 @@ import mask2 from '../assets/mask2.png';
 import { ToastContainer , toast , Bounce} from "react-toastify";
 import Swal2 from "sweetalert2";
 
-
-
+import {login , signup} from "../services/api";
 
 
 const Login=()=> {
@@ -22,9 +21,11 @@ const Login=()=> {
   const [user, setUser] = useState({
     username: "",
     password: "",
-    cnfpass: "",
+    email: "",
   });
   const [imageIndex, setImageIndex] = useState(0);
+  const[isloading,setIsLoading]= useState(false);
+  const[isSignUploading , setIsSignUpLoading] = useState(false);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -32,82 +33,28 @@ const Login=()=> {
 
   const changeForm = () => {
     setIsLogin(!isLogin);
-    setUser({ username: "", password: "", cnfpass: "" });
+    setUser({ username: "", password: "", email: "" });
   };
 
 const Navigate = useNavigate();
 
-  const handleAdminLogin = (e) => {
-    // Implement admin login logic here
-    e.preventDefault();
-if(role === "admin" && user.username === "admin" && user.password === "adminpass"){
-  // Successful admin login
- 
-
- Swal2.fire({
-      title: "Login Successful!",
-      text: 'Welcome Admin!',
-      icon: "success",
-      confirmButtonColor: "#10b981", // emerald color
-      theme: "dark"
-      
-    }).then((result)=>{
-      if(result.isConfirmed){
-       Navigate('/admin');
-      localStorage.setItem("isAdminLoggedIn", "true");
-      }
-    }
-    )
-
- 
-} else if(role === "admin" && isLogin === true){
-  toast.error("Invalid admin credentials");
-}
-
-
-if(role === "user"&& isLogin === true && user.username === "user" && user.password === "userpass"){
-
-  // Successful user login
-
-
-Swal2.fire({
-      title: "Login Successful!",
-      text: 'Welcome User!',
-      icon: "success",
-      confirmButtonColor: "#10b981", // emerald color
-      theme: "dark"
-      
-    }).then((result)=>{
-      if(result.isConfirmed){
-       Navigate('/user');
-      localStorage.setItem("isUserLoggedIn", "true");
-      }
-    }
-    )
-
-
-} else if(role === "user" && isLogin === true){
-  toast.error("Invalid user credentials");
-}
-
-
-  };
-
-
   useEffect(() => {
-    const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn");  
-    if (isAdminLoggedIn === "true") {
-      Navigate('/admin');
-    }
-
-    const isUserLoggedIn = localStorage.getItem("isUserLoggedIn");  
-    if (isUserLoggedIn === "true") {
-      Navigate('/user');
-    }
+  const role = localStorage.getItem("role");
+   if(role==="ADMIN")Navigate("/admin");
+   if(role==="USER")Navigate("/user")
   }, []);
 
-const images = [toner1,lipbalm2,mask2]
+  useEffect(() => {
+  setUser(prev => ({
+    ...prev,
+    username: "",
+    email: ""
+  }));
+}, [role]);
 
+
+
+const images = [toner1,lipbalm2,mask2];
 
 useEffect(() => {
     const interval = setInterval(() => {
@@ -116,6 +63,75 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
+
+  const handleSignUp =async(e)=>{
+        e.preventDefault();
+
+        if(isSignUploading) return;
+        setIsSignUpLoading(true);
+
+        try{
+          await signup({
+            username:user.username,
+            email: user.email,
+            password: user.password
+          })
+
+          Swal2.fire({
+      title: "Signup Successful!",
+      text: "Please login to continue",
+      icon: "success",
+      confirmButtonColor: "#10b981",
+    });
+
+    setIsLogin(true);
+    setUser({username:"",email:"",password:""});
+        }catch(err){
+          toast.error(err.response?.data || "SignUp failed");
+        }finally{
+          setIsSignUpLoading(false);
+        }
+  }
+
+  const handleLogin =async(e)=>{
+         e.preventDefault();
+
+         if(isloading) return;
+         setIsLoading(true);
+          try{
+            let payload ={password:user.password};
+
+            if(role==="admin"){
+              payload.username=user.username;
+            
+            }else{
+              payload.email=user.email;
+            }
+
+            const res = await login(payload);
+            const {id,role:roleFromBackend,username}=res.data
+ Swal2.fire({
+      title: "Login Successful!",
+      text: `Welcome !`,
+      icon: "success",
+      confirmButtonColor: "#10b981",
+    }).then(() => {
+      localStorage.setItem("role", roleFromBackend)
+      localStorage.setItem("userId" ,id);
+      localStorage.setItem("username",username);
+       roleFromBackend === "ADMIN"
+        ? Navigate("/admin")
+        : Navigate("/user");
+    });
+ 
+          }catch(err){
+            toast.error(err.response?.data || "Invalid credentials")
+            console.error(err)
+           
+          }finally{
+             setIsLoading(false);
+          }
+  }
   
   return (
     <div className="min-h-screen flex items-center justify-center gap-30  bg-[#f6efe4]  ">
@@ -185,15 +201,29 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
                   <LuShieldCheck size={22} />
                 </button>
               </div>
-          <form  onSubmit={handleAdminLogin}>
+          <form  onSubmit={handleLogin}>
               <div className="mt-8">
-                <input
+                {role==="admin"? (
+
+                  <input
                   name="username"
-                  placeholder="Username or email"
+                  type ="text"
+                  placeholder="username"
                   value={user.username}
                   onChange={handleChange}
                   className="w-full px-4 py-2 rounded-full border focus:border-amber-600 outline-none"
                 />
+
+                ):(
+                <input
+                  name="email"
+                  type ="email"
+                  placeholder=" email"
+                  value={user.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-full border focus:border-amber-600 outline-none"
+                />
+                )}
               </div>
 
               <div className="mt-4 flex items-center border rounded-full focus-within:border-amber-600">
@@ -215,8 +245,10 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
 
               <button 
             type="submit"
-              className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
-                Login
+            disabled={isloading}
+              className={`mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition ${isloading ? "opacity-70 cursor-not-allowed" : "hover:scale-105"}`}>
+                {isloading ?  "Logging in...." : "Login" }
+            
               </button>
               </form>
               <p className="text-center text-sm mt-6">
@@ -243,11 +275,11 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
               <p className="text-center text-sm text-gray-600 mt-2">
                 Start your natural beauty journey
               </p>
-            <form>
+            <form onSubmit={handleSignUp}>
               <div className="mt-8">
                 <input
                   name="username"
-                  placeholder="Username or email"
+                  placeholder="Username "
                   value={user.username}
                   onChange={handleChange}
                   className="w-full px-4 py-2 rounded-full border focus:border-amber-600 outline-none"
@@ -255,6 +287,18 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
               </div>
 
               <div className="mt-4 flex items-center border rounded-full focus-within:border-amber-600">
+                <input
+                  name="email"
+                  type='email'
+                  placeholder="Email"
+                  value={user.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-full outline-none"
+                />
+                
+               
+              </div>
+               <div className="mt-4 flex items-center border rounded-full focus-within:border-amber-600">
                 <input
                   name="password"
                   type={hidepass ? "password" : "text"}
@@ -271,19 +315,13 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
                 </span>
               </div>
 
-              <div className="mt-4 flex items-center border rounded-full focus-within:border-amber-600">
-                <input
-                  name="cnfpass"
-                  type={hidepass ? "password" : "text"}
-                  placeholder="Confirm password"
-                  value={user.cnfpass}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-full outline-none"
-                />
-              </div>
+             
 
-              <button className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
-                Sign Up
+              <button
+              type="submit"
+              disabled={isSignUploading}
+              className="mt-6 w-full py-3 rounded-full bg-linear-to-r from-[#e9bf8f] via-[#C68642] to-[#8B5E34] text-white hover:scale-105 transition">
+                {isSignUploading?"Creating Account ....":"Sign in"}
               </button>
               </form>
 
@@ -309,7 +347,7 @@ className="  w-[300px] sm:w-[420px] h-[440px] mt-20 bg-linear-to-b from-[#e8c9a0
 
 <ToastContainer
 position="top-right"
-autoClose={5000}
+autoClose={3000}
 hideProgressBar={false}
 newestOnTop={false}
 closeOnClick={false}

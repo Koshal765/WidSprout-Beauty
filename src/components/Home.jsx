@@ -4,11 +4,8 @@ import About from './About.jsx'
 import About2 from './About2.jsx'
 import Products from './Products.jsx'
 import Reviews from './Reviews.jsx'
-import Feedback from './Feedback.jsx'
 import Footer from './Footer.jsx'
-import rose2 from '../assets/rose2.png';
 import toner1 from '../assets/toner1.png';
-import toner2 from '../assets/toner2.png';
 
 import { useLocation } from 'react-router-dom';
 import { useEffect , useRef } from 'react';
@@ -16,19 +13,19 @@ import {motion} from 'framer-motion'
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import AdminPanel from './AdminPanel.jsx'
+
 
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 
-const Home = ({refresh,setRefresh}) => {
+const Home = () => {
 
-  const isDesktop = window.innerWidth >= 768;
-const roseRef = useRef(null);
+const isDesktop = window.innerWidth >= 768;
+
 const toner1Ref = useRef(null);
-const toner2Ref = useRef(null);
+
 
 useEffect(() => {
 
@@ -38,26 +35,16 @@ useEffect(() => {
 
      mm.add("(min-width: 768px)", () => {
 
-   gsap.set(toner1Ref.current, {
-    xPercent: -40,
-    yPercent: -40,
-    rotation: 20,
-    // rotateY: -30,
-    // rotateX: 10,
-    scale: 1.8,
-  });
+      // main position
+   gsap.set(toner1Ref.current, 
+    {  xPercent: -40,yPercent: -40,  rotation: 20, scale: 1.8, }
+  );
 
-
+// intro animation
   gsap.fromTo(
       toner1Ref.current,
       { y: 80, opacity: 0 },
-      {
-        y: -10,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        delay: 1,
-      }
+      { y: -10,opacity: 1, duration: 1, ease: "power2.out",delay: 1}
     );
 
       // Scroll animation → About
@@ -114,13 +101,7 @@ ScrollTrigger.create({
 
   }, []);
 
-
-
-
-
 const location = useLocation();
-
-
 
   useEffect(() => {
     if (!location.state?.scrollTo) return;
@@ -177,9 +158,7 @@ const location = useLocation();
      <About />
      <About2 />
       <Products />
-      <Reviews refresh={refresh} />
-      {/* <Feedback setRefresh={setRefresh} /> */}
-      
+      <Reviews  /> 
       <Footer />
     
 </div>

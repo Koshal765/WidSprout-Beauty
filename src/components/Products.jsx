@@ -60,9 +60,7 @@ const addToCart=(product)=>{
               e.stopPropagation();
             }}>
               {/* <p className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</p> */}
-              <button 
-              onClick={()=>addToCart(item)}
-              className='w-full text-center text-amber-100 bg-amber-700 border-2 border-amber-200  p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center gap-1'>Add to Cart<IoCartOutline size={23}  /></button>
+        
             </div>
           </motion.div>
         ))}
@@ -92,9 +90,7 @@ const addToCart=(product)=>{
      </div>
             <div className='w-full p-4 rounded-lg items-center gap-6 mt-5 ' >
               {/* <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button> */}
-              <button 
-              onClick={()=>addToCart(item)}
-              className=' w-full flex gap-1 justify-center text-center text-amber-100 bg-amber-700 border-2 border-amber-200 p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Add to Cart<IoCartOutline size={23}   /></button>
+             
             </div> 
       </div>
       </div>

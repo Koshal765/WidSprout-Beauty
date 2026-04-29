@@ -1,175 +1,221 @@
-// import React from 'react'
-// import { motion } from 'framer-motion';
-// import { useState , useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { RiSubtractFill } from "react-icons/ri";
-// import { IoMdAdd } from "react-icons/io";
 
 
-// const saveCart = (updatedCart) => {
-//   localStorage.setItem("cart", JSON.stringify(updatedCart));
-//   window.dispatchEvent(new Event("cartUpdated"));
-// };
-
-
-// const Cart = () => {
-
-//   const [cartItems, setCartItems] = useState([]);
-
-// useEffect(() => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   setCartItems(cart);
-
-//   console.log('Cart items loaded:', cart);
-// }, []);
-
-
-// const increaseQuantity = (id) => {
-//   const updatedCart = cartItems.map(item => 
-//     item.id === id
-//       ? { ...item, quantity: item.quantity + 1 }
-//       : item
-//   );
-//  setCartItems(updatedCart);
-//   saveCart(updatedCart);
-// }
-
-// const decreseQuantity = (id) => {
-//   const updatedCart = cartItems.map(item => 
-//     item.id === id 
-//       ? { ...item, quantity: item.quantity - 1 }
-//       : item
-//   ).filter(item => item.quantity > 0);
-//  setCartItems(updatedCart);
-//   saveCart(updatedCart);
-// }
-
-
-//   return (
-// <>
-// <div className='w-full min-h-screen py-24 '>
-//   <div className=' flex items-center justify-around p-2'>
-//   <motion.h1
- 
-  
-//   className='text-3xl font-semibold text-center '>Your Cart </motion.h1>
-//   <button className='border px-3 py-2 rounded-full text-sm tracking-widest  border-black  hover:bg-black hover:text-white transition-all duration-300'><Link to="/all_products">Back to Shop</Link></button>
-//   </div>
-//    {cartItems.length === 0 ? (
-//   <motion.div 
-//   initial={{ y: 50, opacity: 0 }}
-//   whileInView={{ y: 0, opacity: 1 }}
-//   transition={{ duration: 1, ease: 'easeOut' }}
-//   viewport={{ once: true }}
-  
-//   className='text-center'>
-//   <p className=' mt-25 text-gray-600 text-3xl'>Your cart is empty.</p>
- 
- 
-//   </motion.div>
-  
-// ) : (
-//   <div className='w-3/4 mx-auto mt-10 '>
-//     {cartItems.map((item) => (
-//       <motion.div
-//       initial={{ y: 60, opacity: 0 }}
-//       whileInView={{ y: 0, opacity: 1 }}
-//       transition={{ duration: 1, ease: 'easeOut' }}
-//       viewport={{ amount: 0.3 }}
-      
-//       key={item.id} className='flex items-center justify-around border py-4 border-amber-700 mb-5 rounded-3xl shadow-lg bg-rose-50'> 
-//         <div className='flex items-center gap-4'>
-//           <img src={item.image} alt={item.name} className='w-48 h-48 object-cover rounded-lg' />
-//           <div>
-//             <h2 className='font-semibold text-xl'>{item.name}</h2>
-//             <p>{item.description}</p>
-//             <div className='border-amber-700 rounded-2xl flex items-center justify-around  mt-3 border w-28 '>
-//                 <button
-//         onClick={()=>{decreseQuantity(item.id)}}
-//         >
-//         <RiSubtractFill />
-//         </button>
-//             <p className='text-gray-900 text-xl'> {item.quantity}</p>
-//               <button
-//       onClick={() => increaseQuantity(item.id)}
-    
-//     >
-//      <IoMdAdd />
-
-//     </button>
-//             </div>
-//           </div>
-//         </div>
-//         <p className='font-semibold text-xl'>Price: ₹{item.price * item.quantity}</p>
-       
-//       </motion.div>
-//     ))}
-
-// <div className='flex justify-between items-center p-3  border-t-amber-300 bg-amber-700 '>
-//  <button className='border px-3 py-2 rounded-full text-sm tracking-widest  border-black  hover:bg-black hover:text-white transition-all duration-300'>Order Now</button>
-//   <h2 className='text-2xl font-semibold text-right '>
-//      ₹{cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}
-//   </h2>
-
-// </div>
-
-//   </div>
-
-// )
-// }
-
-// </div>
-// </>
-//   )
-// }
-
-// export default Cart
-
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiSubtractFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
+import { addToCart, getCart, removeItem,clearCart } from "../services/CartService";
+import { placeOrder,createPayment,verifyPayment } from "../services/OrderService";
+import { toast } from "react-toastify";
 
-/* ---------------- SAVE CART ---------------- */
-const saveCart = (updatedCart) => {
-  localStorage.setItem("cart", JSON.stringify(updatedCart));
-  window.dispatchEvent(new Event("cartUpdated"));
-};
+
+
+
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const[isPaying,setIsPaying] = useState(false);
 
-  /* ---------------- LOAD CART ---------------- */
+  const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
+
+  const razorpayRef = useRef();
+
+  /* LOAD CART */
+
+
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartItems(cart);
+    const handleCartCleared = () => {
+      setCartItems([]); // instantly clear cart UI
+    };
+
+    window.addEventListener("cartCleared", handleCartCleared);
+
+    return () => {
+      window.removeEventListener("cartCleared", handleCartCleared);
+    };
   }, []);
 
-  /* ---------------- QUANTITY HANDLERS ---------------- */
-  const increaseQuantity = (id) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    );
-    setCartItems(updatedCart);
-    saveCart(updatedCart);
+  const totalAmount = cartItems.reduce(
+  (total, item) => total + item.price * item.quantity,
+  0
+);
+
+  useEffect(() => {
+    if (!userId) {
+      setCartItems([]);
+      return;
+    }
+    fetchCartItem();
+  }, [userId]);
+
+
+  const fetchCartItem = async () => {
+    const response = await getCart(userId);
+    setCartItems(response);
+    console.log(response)
+  }
+
+  /* - QUANTITY HANDLERS -*/
+  const increaseQuantity = async (item) => {
+    await addToCart({
+      userId,
+      productId: item.productId,
+      quantity: 1
+    });
+    fetchCartItem();
+    window.dispatchEvent(new Event("cartUpdated"));
+
   };
 
-  const decreseQuantity = (id) => {
-    const updatedCart = cartItems
-      .map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-      .filter((item) => item.quantity > 0);
+  const decreseQuantity = async (item) => {
+    if (item.quantity === 1) {
+      await removeItem(item.cartId);
+    } else {
+      await addToCart({
+        userId,
+        productId: item.productId,
+        quantity: -1
+      });
 
-    setCartItems(updatedCart);
-    saveCart(updatedCart);
+    }
+    fetchCartItem();
+    window.dispatchEvent(new Event("cartUpdated"));
+
   };
+
+
+   const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if(window.Razorpay) return resolve(true);
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+
+const handlePaymentSuccess = async (response) => {
+  try {
+
+     if (razorpayRef.current) {
+      razorpayRef.current.close();
+      razorpayRef.current = null;
+    }
+
+    await verifyPayment({
+
+          razorpayOrderId: response.razorpay_order_id,
+          razorpayPaymentId: response.razorpay_payment_id,
+          razorpaySignature: response.razorpay_signature,
+    });
+
+    await clearCart(userId);
+    setCartItems([]);
+    window.dispatchEvent(new Event("cartCleared"));
+
+    toast.success("Payment Successful 🎉");
+
+    setShowModal(false);
+    navigate("/orders");
+  }
+  catch (err) {
+    console.error("Payment verification failed:", err);
+    toast.error("Payment verification failed. Please contact support.");
+  } finally {
+    setIsPaying(false);
+  }
+};
+
+
+
+
+ const handleConfirmPayment =async()=>{
+
+if (cartItems.length === 0) {
+  alert("Cart is empty");
+  return;
+}
+
+if (isPaying) return;
+setIsPaying(true);
+
+ try{
+    const order = await placeOrder({
+      userId,
+      totalAmount,
+      address: "user delivery address",
+    });
+
+   const razorpayOrder = await createPayment(order.id);
+
+   const isLoaded = await loadRazorpayScript();
+    if (!isLoaded) {
+      toast.error("Razorpay SDK failed to load");
+      setIsPaying(false);
+      return;
+    }
+    const options = {
+      key: "rzp_live_SDceviNokDETbw", 
+      amount: razorpayOrder.amount,
+      currency: "INR",
+      name: "WildSprout",
+      description: "Order Payment",
+      order_id: razorpayOrder.razorpayOrderId,
+
+      handler:  function (response) {
+
+        
+        //  Verify payment
+        handlePaymentSuccess(response);
+    ;
+      },
+         
+      modal :{
+        ondismiss: () => {
+
+           if (razorpayRef.current) {
+      razorpayRef.current.close();
+      razorpayRef.current = null;
+    }
+  
+          setIsPaying(false)
+          setShowModal(false);
+        } // reset paying state if user closes the modal
+      },
+
+      theme: {
+        color: "#000000",
+      },
+    };
+        
+    
+      razorpayRef.current = new window.Razorpay(options);
+
+
+razorpayRef.current.on("payment.failed",  () => {
+  toast.error("Payment failed. Please try again.");
+  setIsPaying(false);
+});
+
+
+
+    razorpayRef.current.open();
+   
+
+  }catch(err){
+    console.error(err)
+    toast.error("failed");
+    setIsPaying(false);
+  }
+ 
+ }
+
 
   return (
     <div className="w-full min-h-screen py-24">
@@ -189,7 +235,7 @@ const Cart = () => {
         </button>
       </div>
 
-      {/* ---------------- EMPTY CART ---------------- */}
+      {/* -- EMPTY CART -- */}
       {cartItems.length === 0 ? (
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -203,11 +249,11 @@ const Cart = () => {
         </motion.div>
       ) : (
         <>
-          {/* ---------------- CART ITEMS ---------------- */}
+          {/* - CART ITEMS -- */}
           <div className="w-full max-w-5xl mx-auto mt-10 px-4">
             {cartItems.map((item) => (
               <motion.div
-                key={item.id}
+                key={item.cartId}
                 initial={{ y: 60, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8 }}
@@ -226,7 +272,7 @@ const Cart = () => {
                 {/* IMAGE + INFO */}
                 <div className="flex items-center gap-6 w-full max-[700px]:flex-col max-[700px]:items-start">
                   <img
-                    src={item.image}
+                    src={`http://localhost:8080/images/${item.image}`}
                     alt={item.name}
                     className="
                       w-48 h-48 object-cover rounded-xl
@@ -239,13 +285,15 @@ const Cart = () => {
                     <h2 className="font-semibold text-xl">
                       {item.name}
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-md text-amber-700">{item.category}</p>
+                    <p className="text-md text-gray-600">
                       {item.description}
                     </p>
+                    <p className="text-md text-gray-700">{item.rating}⭐ rating</p>
 
                     {/* QUANTITY CONTROLS */}
                     <div className="flex items-center justify-between border border-amber-700 rounded-2xl w-32 px-3 py-1 mt-3">
-                      <button onClick={() => decreseQuantity(item.id)}>
+                      <button onClick={() => decreseQuantity(item)}>
                         <RiSubtractFill />
                       </button>
 
@@ -253,7 +301,7 @@ const Cart = () => {
                         {item.quantity}
                       </p>
 
-                      <button onClick={() => increaseQuantity(item.id)}>
+                      <button onClick={() => increaseQuantity(item)}>
                         <IoMdAdd />
                       </button>
                     </div>
@@ -268,7 +316,7 @@ const Cart = () => {
             ))}
           </div>
 
-          {/* ---------------- CHECKOUT BAR ---------------- */}
+          {/* -- CHECKOUT BAR -- */}
           <div
             className="
               w-full max-w-5xl mx-auto mt-8
@@ -279,21 +327,66 @@ const Cart = () => {
               max-[700px]:gap-4
             "
           >
-            <button className="border px-5 py-2 rounded-full text-sm text-black tracking-widest border-black hover:bg-black hover:text-white transition-all duration-300">
+            <button 
+            onClick={()=>setShowModal(true)}
+            className="border px-5 py-2 rounded-full text-sm text-black tracking-widest border-black hover:bg-black hover:text-white transition-all duration-300">
               Order Now
             </button>
 
             <h2 className="text-2xl font-semibold text-black">
               ₹
-              {cartItems.reduce(
-                (total, item) =>
-                  total + item.price * item.quantity,
-                0
-              )}
+              {totalAmount}
             </h2>
           </div>
         </>
       )}
+
+      {showModal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          onClick={() => setShowModal(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl"
+          >
+            <h2 className="text-2xl font-semibold text-center mb-6">
+              Confirm Payment
+            </h2>
+
+
+            <div className="flex justify-between items-center text-lg mb-6">
+              <span>Total Amount</span>
+              <span className="font-semibold">₹{totalAmount}</span>
+            </div>
+
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="w-full border py-2 rounded-full transition-all hover:scale-105"
+              >
+                Cancel
+              </button>
+
+
+              <button
+              disabled={isPaying}
+                onClick={handleConfirmPayment}
+                className="w-full bg-black text-white py-2 rounded-full transition-all hover:scale-105"
+              >
+              {isPaying?"Making Payment":"Confirm Payment"}
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
     </div>
   );
 };

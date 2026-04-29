@@ -3,14 +3,21 @@ import { AllProducts as allProducts } from '../constant';
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { IoCartOutline } from "react-icons/io5";
 import { MdCurrencyRupee } from "react-icons/md";
 import { ToastContainer , toast,Bounce } from 'react-toastify';
+import { getAllProducts } from '../services/ProductService';
+import { addToCart as AddToCartAPI } from '../services/CartService'
 
 const AllProducts = () => {
 
 const[selectedProduct , setSelectedProduct]= useState(null);
+const[product,setProduct] = useState([])
+
+useEffect(()=>{
+    fetchProduct();
+},[]);
 
 const Openproduct=(item)=>{
   setSelectedProduct(item);
@@ -20,17 +27,48 @@ const Closeproduct=()=>{
 }
 
 
-const addToCart=(product)=>{
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const existingProduct = cart.find(item => item.id === product.id);
-  if (existingProduct) {
-    existingProduct.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  
-  localStorage.setItem('cart', JSON.stringify(cart));
-  toast.success('Product added to cart!');
-  window.dispatchEvent(new Event('cartUpdated'));
+const fetchProduct =async()=>{
+
+  try{
+  const response = await getAllProducts();
+  setProduct(response)
+
+  }catch(err){
+    console.error(err);
+
+  }
+}
+
+
+
+const addToCart=async(product)=>{
+ 
+    const userId= localStorage.getItem("userId");
+    const role = localStorage.getItem("role");
+
+    if(!userId){
+      toast.error("Please Login")
+      return;
+    }
+      if(role==="ADMIN"){
+        toast.error("Admin cannot Add");
+       return;
+      }
+    
+     try{
+
+      await AddToCartAPI({
+        userId: Number(userId),
+        productId : product.id,
+        quantity:1
+      });
+
+      toast.success("Added to Cart");
+      window.dispatchEvent(new Event("cartUpdated"));
+
+  }catch(err){
+ toast.error("Failed to Add Product to Cart")
+    console.error(err)
   }
 }
 
@@ -51,24 +89,24 @@ const addToCart=(product)=>{
       
       </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-4">
-        {allProducts.map((item, id) => (
+        {product.map((product, id) => (
           <motion.div
             key={id}
             className="w-full border border-amber-700 rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer bg-rose-50 mt-5"
-         onClick={()=>Openproduct(item)} >
+         onClick={()=>Openproduct(product)} >
             <div className="h-48 w-full rounded-xl overflow-hidden mb-4 border border-amber-200 ">
-              <img src={item.image} alt={item.name} className="h-full w-full object-cover object-center  transition-transform duration-700 ease-out hover:scale-115" />
+              <img src={`http://localhost:8080/images/${product.image}`} alt={product.name} className="h-full w-full object-cover object-center  transition-transform duration-700 ease-out hover:scale-115" />
             </div>
-            <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{item.name}</h1>
-            <p className="text-amber-700 font-semibold mb-1">{item.tags}</p>
-            <p className="text-sm text-gray-700 mb-3">{item.description}</p>
-            <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{item.price}</p>
+            <h1 className="text-lg font-serif font-semibold text-gray-900 mb-1">{product.name}</h1>
+            <p className="text-amber-700 font-semibold mb-1">{product.category}</p>
+            <p className="text-sm text-gray-700 mb-3">{product.description}</p>
+            <p className="text-gray-700 font-semibold mb-1 flex items-center" >Price : <span><MdCurrencyRupee /></span>{product.price}</p>
                        <div className=' flex w-full p-4 rounded-lg items-center gap-6 '>
                          {/* <button className=' bg-amber-700 text-white text-center p-1 rounded-lg shadow-lg transition-all hover:scale-105'>Buy Now</button> */}
                          <button
                          onClick={(e)=>{
                           e.preventDefault();
-                          addToCart(item)}}
+                          addToCart(product)}}
                          
                          className=' w-full text-center text-amber-100 bg-amber-700 border border-amber-700 p-1 rounded-lg shadow-lg transition-all hover:scale-105 flex justify-center gap-2'>Add to Cart<IoCartOutline size={23} /></button>
                        </div>
@@ -84,7 +122,7 @@ const addToCart=(product)=>{
       <button onClick={Closeproduct} className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div className='flex gap-6 justify-center flex-col md:flex-row lg:flex-row'>
       <div className="h-50 w-full md:h-100 md:w-full lg:h-100 lg:w-full rounded-xl overflow-hidden mb-4 border border-amber-700 ">
-        <img src={selectedProduct.image} alt={selectedProduct.name} className="h-full w-full object-cover object-center" />   
+        <img src={`http://localhost:8080/images/${selectedProduct.image}`} alt={selectedProduct.name} className="h-full w-full object-cover object-center" />   
       </div>
       <div>
       <h2 className="text-xl lg:text-2xl font-serif font-semibold text-gray-900 mb-2">{selectedProduct.name}</h2>
@@ -92,7 +130,7 @@ const addToCart=(product)=>{
       <p className="text-gray-700 mb-4">{selectedProduct.description}</p>
       <p className='text-amber-700 font-semibold'>Ingredients :</p>
       <div className='flex flex-wrap gap-2 py-6'>
-      {selectedProduct.ingredients.map((ingredient, index) => (
+      {selectedProduct.ingredients?.split(" ").map((ingredient, index) => (
         <span key={index} className='bg-amber-800 text-xs font-semibold text-white rounded-full px-2 py-1 transition-all hover:scale-105 '>{ingredient}</span>
       ))}
       </div>
@@ -115,7 +153,7 @@ const addToCart=(product)=>{
 
 <ToastContainer
 position="top-right"
-autoClose={5000}
+autoClose={3000}
 hideProgressBar={false}
 newestOnTop={false}
 closeOnClick={false}
